@@ -1,0 +1,25 @@
+<h1>Listing frequencies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Number of days</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @frequencies.each do |frequency| %>
+  <tr>
+    <td><%= frequency.name %></td>
+    <td><%= frequency.number_of_days %></td>
+    <td><%= link_to 'Show', frequency %></td>
+    <td><%= link_to 'Edit', edit_frequency_path(frequency) %></td>
+    <td><%= link_to 'Destroy', frequency, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Frequency', new_frequency_path %>

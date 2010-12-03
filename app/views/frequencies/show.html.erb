@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @frequency.name %>
+</p>
+
+<p>
+  <b>Number of days:</b>
+  <%= @frequency.number_of_days %>
+</p>
+
+
+<%= link_to 'Edit', edit_frequency_path(@frequency) %> |
+<%= link_to 'Back', frequencies_path %>
