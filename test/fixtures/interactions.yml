@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  friend_id: 1
+  user_id: 1
+  datetime: 2011-01-28 17:13:16
+  description: MyText
+  interaction_type_id: 1
+  points: 1
+
+two:
+  friend_id: 1
+  user_id: 1
+  datetime: 2011-01-28 17:13:16
+  description: MyText
+  interaction_type_id: 1
+  points: 1

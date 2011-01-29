@@ -1,4 +1,8 @@
 Sociallatio::Application.routes.draw do
+  resources :interaction_types
+
+  resources :interactions
+
   resources :frequencies
 
   resources :friends

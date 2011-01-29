@@ -1,0 +1,23 @@
+<h1>Listing interaction_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @interaction_types.each do |interaction_type| %>
+  <tr>
+    <td><%= interaction_type.name %></td>
+    <td><%= link_to 'Show', interaction_type %></td>
+    <td><%= link_to 'Edit', edit_interaction_type_path(interaction_type) %></td>
+    <td><%= link_to 'Destroy', interaction_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Interaction type', new_interaction_type_path %>
