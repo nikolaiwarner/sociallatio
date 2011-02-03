@@ -1,0 +1,19 @@
+= form_for(@frequency) do |f|
+  - if @frequency.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@frequency.errors.count, "error")
+        prohibited this frequency from being saved:
+      %ul
+        - @frequency.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :number_of_days
+    %br/
+    = f.text_field :number_of_days
+  .actions
+    = f.submit

@@ -1,0 +1,35 @@
+= form_for(@interaction) do |f|
+  - if @interaction.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@interaction.errors.count, "error")
+        prohibited this interaction from being saved:
+      %ul
+        - @interaction.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :friend_id
+    %br/
+    = f.text_field :friend_id
+  .field
+    = f.label :user_id
+    %br/
+    = f.text_field :user_id
+  .field
+    = f.label :datetime
+    %br/
+    = f.datetime_select :datetime
+  .field
+    = f.label :description
+    %br/
+    = f.text_area :description
+  .field
+    = f.label :interaction_type_id
+    %br/
+    = f.text_field :interaction_type_id
+  .field
+    = f.label :points
+    %br/
+    = f.text_field :points
+  .actions
+    = f.submit

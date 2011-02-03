@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @friend.name
+%p
+  %b Frequency:
+  = @friend.frequency.name
+= link_to 'Edit', edit_friend_path(@friend)
+|
+\#{link_to 'Back', friends_path}

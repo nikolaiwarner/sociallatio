@@ -1,4 +1,4 @@
 class Friend < ActiveRecord::Base
-  has_one :frequency
+  belongs_to :frequency
   has_many :interactions
 end

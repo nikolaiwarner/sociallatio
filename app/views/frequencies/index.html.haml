@@ -1,0 +1,17 @@
+%h1 Listing frequencies
+%table
+  %tr
+    %th Name
+    %th Number of days
+    %th
+    %th
+    %th
+  - @frequencies.each do |frequency|
+    %tr
+      %td= frequency.name
+      %td= frequency.number_of_days
+      %td= link_to 'Show', frequency
+      %td= link_to 'Edit', edit_frequency_path(frequency)
+      %td= link_to 'Destroy', frequency, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Frequency', new_frequency_path

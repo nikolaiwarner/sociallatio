@@ -1,0 +1,22 @@
+%p#notice= notice
+%p
+  %b Friend:
+  = @interaction.friend_id
+%p
+  %b User:
+  = @interaction.user_id
+%p
+  %b Datetime:
+  = @interaction.datetime
+%p
+  %b Description:
+  = @interaction.description
+%p
+  %b Interaction type:
+  = @interaction.interaction_type_id
+%p
+  %b Points:
+  = @interaction.points
+= link_to 'Edit', edit_interaction_path(@interaction)
+|
+\#{link_to 'Back', interactions_path}
