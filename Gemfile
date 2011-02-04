@@ -5,6 +5,8 @@ gem 'haml'
 gem 'devise'
 gem 'cancan'
 gem 'paperclip'
+gem "high_voltage"
+gem 'jquery-rails', '>= 0.2.6'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
