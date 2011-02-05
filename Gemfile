@@ -8,10 +8,10 @@ gem 'paperclip'
 gem "high_voltage"
 gem 'jquery-rails', '>= 0.2.6'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3'
 
 # gem 'aws-s3', :require => 'aws/s3'
 
-# group :development, :test do
-#   gem 'webrat'
-# end
+group :development, :test do
+  gem "rspec-rails", ">= 2.4.1"
+end
