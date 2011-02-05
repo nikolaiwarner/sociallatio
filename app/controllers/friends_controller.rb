@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /friends
   # GET /friends.xml
   def index

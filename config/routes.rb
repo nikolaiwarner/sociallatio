@@ -1,4 +1,6 @@
 Sociallatio::Application.routes.draw do
+  devise_for :users
+
   resources :interaction_types
 
   resources :interactions

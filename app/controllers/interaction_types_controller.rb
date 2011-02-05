@@ -1,4 +1,6 @@
 class InteractionTypesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /interaction_types
   # GET /interaction_types.xml
   def index

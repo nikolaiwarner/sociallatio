@@ -1,4 +1,6 @@
 class FrequenciesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /frequencies
   # GET /frequencies.xml
   def index

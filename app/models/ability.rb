@@ -9,7 +9,7 @@ class Ability
     else
       can :read, :all
       
-      if user.role == 'author'
+      if user.role == 'friend'
         can :create, Friend
         can [:update, :destroy], Friend do |friend|
           friend.try(:user) == user

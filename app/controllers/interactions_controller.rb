@@ -1,4 +1,6 @@
 class InteractionsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /interactions
   # GET /interactions.xml
   def index
