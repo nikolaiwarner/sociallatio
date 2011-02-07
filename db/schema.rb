@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110205055027) do
+ActiveRecord::Schema.define(:version => 20110207021022) do
 
   create_table "frequencies", :force => true do |t|
     t.string   "name"
     t.integer  "number_of_days"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "friends", :force => true do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110205055027) do
     t.integer  "frequency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "interaction_types", :force => true do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20110205055027) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

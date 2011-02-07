@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
   # GET /interactions
   # GET /interactions.xml
   def index
-    @interactions = Interaction.all
+    @interactions = Interaction.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class InteractionsController < ApplicationController
   # GET /interactions/1
   # GET /interactions/1.xml
   def show
-    @interaction = Interaction.find(params[:id])
+    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,13 +36,15 @@ class InteractionsController < ApplicationController
 
   # GET /interactions/1/edit
   def edit
-    @interaction = Interaction.find(params[:id])
+    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
   end
 
   # POST /interactions
   # POST /interactions.xml
   def create
     @interaction = Interaction.new(params[:interaction])
+
+    @interaction.user = current_user
 
     respond_to do |format|
       if @interaction.save
@@ -58,7 +60,7 @@ class InteractionsController < ApplicationController
   # PUT /interactions/1
   # PUT /interactions/1.xml
   def update
-    @interaction = Interaction.find(params[:id])
+    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       if @interaction.update_attributes(params[:interaction])
@@ -74,7 +76,7 @@ class InteractionsController < ApplicationController
   # DELETE /interactions/1
   # DELETE /interactions/1.xml
   def destroy
-    @interaction = Interaction.find(params[:id])
+    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
     @interaction.destroy
 
     respond_to do |format|

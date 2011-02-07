@@ -1,2 +1,5 @@
+$(document).ready(function(){
+  
+  $('#interaction_datetime').datetimepicker();
 
-$('#interaction_datetime').datetimepicker();
+});

@@ -7,14 +7,10 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     else
-      can :read, :all
-      
       if user.role == 'friend'
-        can :create, Friend
-        can [:update, :destroy], Friend do |friend|
-          friend.try(:user) == user
-        end
-      end
+        can :create, [Friend, Interaction, InteractionType, Frequency]
+        can [:read, :update, :destroy], [Friend, Interaction, InteractionType, Frequency], :user_id => user.id
+      end  
     end
   end
 end

@@ -4,7 +4,7 @@ class FriendsController < ApplicationController
   # GET /friends
   # GET /friends.xml
   def index
-    @friends = Friend.all
+    @friends = Friend.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class FriendsController < ApplicationController
   # GET /friends/1
   # GET /friends/1.xml
   def show
-    @friend = Friend.find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class FriendsController < ApplicationController
   # GET /friends/new.xml
   def new
     @friend = Friend.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @friend }
@@ -36,13 +36,15 @@ class FriendsController < ApplicationController
 
   # GET /friends/1/edit
   def edit
-    @friend = Friend.find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
   end
 
   # POST /friends
   # POST /friends.xml
   def create
     @friend = Friend.new(params[:friend])
+    
+    @friend.user = current_user
 
     respond_to do |format|
       if @friend.save
@@ -58,7 +60,7 @@ class FriendsController < ApplicationController
   # PUT /friends/1
   # PUT /friends/1.xml
   def update
-    @friend = Friend.find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])
@@ -74,7 +76,7 @@ class FriendsController < ApplicationController
   # DELETE /friends/1
   # DELETE /friends/1.xml
   def destroy
-    @friend = Friend.find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
     @friend.destroy
 
     respond_to do |format|

@@ -4,7 +4,7 @@ class FrequenciesController < ApplicationController
   # GET /frequencies
   # GET /frequencies.xml
   def index
-    @frequencies = Frequency.all
+    @frequencies = Frequency.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class FrequenciesController < ApplicationController
   # GET /frequencies/1
   # GET /frequencies/1.xml
   def show
-    @frequency = Frequency.find(params[:id])
+    @frequency = Frequency.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,13 +36,15 @@ class FrequenciesController < ApplicationController
 
   # GET /frequencies/1/edit
   def edit
-    @frequency = Frequency.find(params[:id])
+    @frequency = Frequency.where(:user_id => current_user.id).find(params[:id])
   end
 
   # POST /frequencies
   # POST /frequencies.xml
   def create
     @frequency = Frequency.new(params[:frequency])
+    
+    @frequency.user = current_user
 
     respond_to do |format|
       if @frequency.save
@@ -58,7 +60,7 @@ class FrequenciesController < ApplicationController
   # PUT /frequencies/1
   # PUT /frequencies/1.xml
   def update
-    @frequency = Frequency.find(params[:id])
+    @frequency = Frequency.where(:user_id => current_user.id).find(params[:id])
 
     respond_to do |format|
       if @frequency.update_attributes(params[:frequency])
@@ -74,7 +76,7 @@ class FrequenciesController < ApplicationController
   # DELETE /frequencies/1
   # DELETE /frequencies/1.xml
   def destroy
-    @frequency = Frequency.find(params[:id])
+    @frequency = Frequency.where(:user_id => current_user.id).find(params[:id])
     @frequency.destroy
 
     respond_to do |format|
