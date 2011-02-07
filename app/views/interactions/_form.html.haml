@@ -9,7 +9,10 @@
           %li= msg
   .field
     = f.label :friend_id, "The Friend: "
-    = select :interaction, :friend_id, Friend.all.collect {|p| [ p.name, p.id ] }
+    /= select :interaction, :friend_id, Friend.all.collect {|p| [ p.name, p.id ] }
+    
+    = text_field :interaction, :friend_id, { :class => "autocomplete" }
+    
   .field
     = f.label :datetime, "When: "
     = f.text_field :datetime, {:class => "datetimepicker"}

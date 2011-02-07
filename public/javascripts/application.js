@@ -1,5 +1,11 @@
 $(document).ready(function(){
   
-  $('#interaction_datetime').datetimepicker();
+  $('.datetimepicker').datetimepicker();
+
+  $(".autocomplete").autocomplete({
+    source: "autocomplete.js",
+    minLength: 3
+  });
+
 
 });

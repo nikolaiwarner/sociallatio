@@ -1,49 +1,39 @@
 class FriendsController < ApplicationController
   load_and_authorize_resource
 
-  # GET /friends
-  # GET /friends.xml
+  respond_to :html, :json
+
+  def autocomplete
+    @friends = Friend.limit(10).where(:user_id => current_user.id).search_for_name(params[:name])
+    respond_with(@friends)
+  end
+
+
   def index
     @friends = Friend.where(:user_id => current_user.id)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @friends }
-    end
+    respond_with(@friends)
   end
 
-  # GET /friends/1
-  # GET /friends/1.xml
+
   def show
     @friend = Friend.where(:user_id => current_user.id).find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @friend }
-    end
+    respond_with(@friend)
   end
 
-  # GET /friends/new
-  # GET /friends/new.xml
+
   def new
     @friend = Friend.new
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @friend }
-    end
+    respond_with(@friend)
   end
 
-  # GET /friends/1/edit
+
   def edit
     @friend = Friend.where(:user_id => current_user.id).find(params[:id])
   end
 
-  # POST /friends
-  # POST /friends.xml
+
   def create
     @friend = Friend.new(params[:friend])
-    
     @friend.user = current_user
 
     respond_to do |format|
@@ -57,8 +47,7 @@ class FriendsController < ApplicationController
     end
   end
 
-  # PUT /friends/1
-  # PUT /friends/1.xml
+
   def update
     @friend = Friend.where(:user_id => current_user.id).find(params[:id])
 
@@ -73,8 +62,7 @@ class FriendsController < ApplicationController
     end
   end
 
-  # DELETE /friends/1
-  # DELETE /friends/1.xml
+
   def destroy
     @friend = Friend.where(:user_id => current_user.id).find(params[:id])
     @friend.destroy
