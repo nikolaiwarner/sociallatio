@@ -1,7 +1,14 @@
 %h1 your friends
 
+%h2 friends in need
 - @friends.each do |friend|
-  = link_to friend.name, friend
+  - if friend.needs_an_interaction? current_user
+    = link_to "#{friend.name})", friend
+    %br/
+
+%h2 all off your friends
+- @friends.each do |friend|
+  = link_to "#{friend.name})", friend
   %br/
     
       
