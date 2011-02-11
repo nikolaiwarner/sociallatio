@@ -20,12 +20,18 @@
     = javascript_include_tag "jquery-ui-timepicker-addon", "application"
     = csrf_meta_tag
   %body
-    .header
-      = link_to "sociallatio", root_url
-    .content
-      .notice
-        = notice
-      .alert
-        = alert
-      = yield
+    .wrapper
+      .header
+        = link_to "sociallatio", root_url
+      .content
+        = render 'layouts/notices'
+        = yield
+      .footer_push
     .footer
+      - if current_user
+        = link_to("friends", friends_path)
+        = link_to("interactions", interactions_path) 
+        = link_to("settings", page_path('settings')) 
+        = link_to("sign out", destroy_user_session_path)
+      - else
+        = link_to("sign in", new_user_session_path)

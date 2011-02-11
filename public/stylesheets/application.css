@@ -1,3 +1,6 @@
+html, body {
+  height: 100%; }
+
 body {
   background-color: white;
   color: #333333;
@@ -30,8 +33,10 @@ h1 {
 div.field, div.actions {
   margin-bottom: 10px; }
 
-#notice {
-  color: green; }
+.notice, .alert {
+  text-align: center;
+  color: #db7093;
+  padding: 10px; }
 
 .field_with_errors {
   padding: 2px;
@@ -58,6 +63,12 @@ div.field, div.actions {
     font-size: 12px;
     list-style: square; }
 
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -160px; }
+
 .header {
   width: 700px;
   margin: 0px auto;
@@ -72,11 +83,20 @@ div.field, div.actions {
   width: 700px;
   margin: 0px auto; }
 
+.footer, .footer_push {
+  height: 140px; }
+
 .footer {
+  text-align: center;
+  font-size: 20px;
   width: 700px;
   margin: 0px auto;
-  border_bottom: 1px solid #dddddd;
+  margin-top: 40px;
+  border-top: 1px solid #dddddd;
   padding: 10px; }
+  .footer a {
+    padding-left: 10px;
+    padding-right: 10px; }
 
 .ui-timepicker-div .ui-widget-header {
   margin-bottom: 8px; }
