@@ -7,7 +7,11 @@ Sociallatio::Application.routes.draw do
 
   resources :frequencies
 
-  resources :friends
+  resources :friends do 
+    collection do
+      get :autocomplete
+    end
+  end
   
   root :to => 'high_voltage/pages#show', :id => 'home'
 
