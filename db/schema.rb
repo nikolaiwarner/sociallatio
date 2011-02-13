@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110207021022) do
+ActiveRecord::Schema.define(:version => 20110213061202) do
 
   create_table "frequencies", :force => true do |t|
     t.string   "name"
@@ -26,11 +26,14 @@ ActiveRecord::Schema.define(:version => 20110207021022) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "score"
+    t.text     "notes"
   end
 
   create_table "interaction_types", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

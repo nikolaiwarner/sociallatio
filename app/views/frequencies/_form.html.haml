@@ -8,12 +8,11 @@
         - @frequency.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :name
+    = f.label :name, "the frequency named "
+    = f.text_field :name, :style => "width:200px"
     %br/
-    = f.text_field :name
-  .field
-    = f.label :number_of_days
-    %br/
-    = f.text_field :number_of_days
+    = f.label :number_of_days, " occurs every "
+    = f.text_field :number_of_days, :style => "width:50px"
+    days. 
   .actions
-    = f.submit
+    = f.submit :value => 'update'

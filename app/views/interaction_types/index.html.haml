@@ -1,15 +1,14 @@
-%h1 Listing interaction_types
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+%h1 types of interactions
+
+.nav
+  = link_to 'new type', new_interaction_type_path
+
+
+.interaction_types_page
+  
   - @interaction_types.each do |interaction_type|
-    %tr
-      %td= interaction_type.name
-      %td= link_to 'Show', interaction_type
-      %td= link_to 'Edit', edit_interaction_type_path(interaction_type)
-      %td= link_to 'Destroy', interaction_type, :confirm => 'Are you sure?', :method => :delete
-%br/
-= link_to 'New Interaction type', new_interaction_type_path
+    = link_to interaction_type.name, interaction_type
+    \:
+    #{interaction_type.points}
+    %br/
+        

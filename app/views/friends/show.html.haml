@@ -1,5 +1,18 @@
 %h1= @friend.name
-%p
-  %b Frequency:
-  = @friend.frequency.name
-= link_to 'Edit', edit_friend_path(@friend)
+
+.friend_page
+
+  .status
+    #{pluralize @friend.score, 'point'}
+    \-
+    = @friend.frequency.name
+    \- 
+    = link_to 'edit', edit_friend_path(@friend)
+    
+  
+  .notes
+    = form_for(@friend) do |f|
+      .field
+        = f.text_area :notes
+      .actions
+        = f.submit :value => "save notes"

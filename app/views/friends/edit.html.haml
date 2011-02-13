@@ -1,5 +1,7 @@
-%h1 Editing friend
+%h1 edit your friend
 = render 'form'
-= link_to 'Show', @friend
-|
-\#{link_to 'Back', friends_path}
+
+   
+    
+.admin
+  = link_to 'delete', @friend, :confirm => 'Are you sure?', :method => :delete

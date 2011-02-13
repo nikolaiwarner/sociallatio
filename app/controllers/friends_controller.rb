@@ -1,23 +1,23 @@
 class FriendsController < ApplicationController
-  load_and_authorize_resource #:find_by => :username
+  #before_filter :load_friend, :except => [:index, :new]
+  authorize_resource
 
   respond_to :html, :json
 
   def autocomplete
     @friends = (params[:term] == "") ? [] : Friend.limit(10).where(:user_id => current_user.id, :name.matches => '%'+params[:term]+'%')
-
     respond_with(@friends.collect{ |friend| friend.name })
   end
 
 
   def index
-    @friends = Friend.where(:user_id => current_user.id)
+    @friends = Friend.where(:user_id => current_user.id).order('name ASC')
     respond_with(@friends)
   end
 
 
   def show
-    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
     respond_with(@friend)
   end
 
@@ -29,13 +29,14 @@ class FriendsController < ApplicationController
 
 
   def edit
-    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
   end
 
 
   def create
     @friend = Friend.new(params[:friend])
     @friend.user = current_user
+    @friend.score = 0
 
     respond_to do |format|
       if @friend.save
@@ -50,7 +51,7 @@ class FriendsController < ApplicationController
 
 
   def update
-    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])
@@ -65,7 +66,7 @@ class FriendsController < ApplicationController
 
 
   def destroy
-    @friend = Friend.where(:user_id => current_user.id).find(params[:id])
+    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
     @friend.destroy
 
     respond_to do |format|
@@ -73,4 +74,12 @@ class FriendsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+protected
+  def load_friend
+    @friend = Friend.find_by_slug(params[:id])
+  end
+  
+  
 end

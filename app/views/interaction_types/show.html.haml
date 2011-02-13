@@ -1,7 +1,4 @@
-%p#notice= notice
-%p
-  %b Name:
-  = @interaction_type.name
-= link_to 'Edit', edit_interaction_type_path(@interaction_type)
-|
-\#{link_to 'Back', interaction_types_path}
+%h1= @interaction_type.name
+
+.nav
+  = link_to 'edit', edit_interaction_type_path(@interaction_type)

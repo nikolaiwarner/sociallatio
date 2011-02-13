@@ -1,0 +1,1 @@
+= raw friends.collect { |friend| friend.needs_an_interaction?(current_user) ? link_to(friend.name, friend, {:class => 'friend_needs_interaction'}) :link_to(friend.name, friend)  }.join(', ')

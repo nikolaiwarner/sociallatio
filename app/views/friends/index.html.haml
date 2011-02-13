@@ -1,13 +1,7 @@
 %h1 your friends
 
-%h2 friends in need
-- @friends.each do |friend|
-  - if friend.needs_an_interaction? current_user
-    = link_to "#{friend.name}", friend
-    %br/
+.nav
+  = link_to "new friend", new_friend_path
 
-%h2 all off your friends
-- @friends.each do |friend|
-  = link_to "#{friend.name},", friend
-    
+= render 'friends/name_list', :friends => @friends     
       

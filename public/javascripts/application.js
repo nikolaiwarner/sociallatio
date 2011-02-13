@@ -1,6 +1,8 @@
 $(document).ready(function(){
   
-  $('.datetimepicker').datepicker();
+  if ($('.datepicker').length > 0) {
+    $('.datepicker').datepicker();
+  }
 
   $(".autocomplete").autocomplete({
     source: "/friends/autocomplete.json",

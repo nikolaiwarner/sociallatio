@@ -15,10 +15,11 @@
     
   .field
     = f.label :datetime, "When: "
-    = f.text_field :datetime, {:class => "datetimepicker"}
+    = f.text_field :datetime, {:class => "datepicker"}
   .field
     = f.label :interaction_type_id, "What: "
-    = f.text_field :interaction_type_id
+    = f.select :interaction_type_id, InteractionType.all.collect {|p| [ p.name, p.id ] }
+    
   
   .field
     = f.label :description, "Details: "

@@ -4,7 +4,7 @@ class InteractionTypesController < ApplicationController
   # GET /interaction_types
   # GET /interaction_types.xml
   def index
-    @interaction_types = InteractionType.where(:user_id => current_user.id)
+    @interaction_types = InteractionType.where(:user_id => current_user.id).order('points ASC')
 
     respond_to do |format|
       format.html # index.html.erb

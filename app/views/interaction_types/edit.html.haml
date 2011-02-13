@@ -1,5 +1,6 @@
-%h1 Editing interaction_type
+%h1 editing type of interaction
 = render 'form'
-= link_to 'Show', @interaction_type
-|
-\#{link_to 'Back', interaction_types_path}
+   
+    
+.admin
+  = link_to 'delete', @interaction_type, :confirm => 'Are you sure?', :method => :delete

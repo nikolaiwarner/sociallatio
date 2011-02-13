@@ -8,12 +8,10 @@
         - @friend.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :name, "Your Friend's Name"
-    %br/
+    = f.label :name, "your friend's name: "
     = f.text_field :name
   .field
-    = f.label :frequency_id, "Frequency To Interact"
-    %br/
+    = f.label :frequency_id, "frequency to interact: "
     = select :friend, :frequency_id, Frequency.all.collect {|p| [ p.name, p.id ] }
   .actions
     = f.submit

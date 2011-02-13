@@ -1,10 +1,17 @@
-%p#notice= notice
-%p
-  %b Name:
-  = @frequency.name
-%p
-  %b Number of days:
-  = @frequency.number_of_days
-= link_to 'Edit', edit_frequency_path(@frequency)
-|
-\#{link_to 'Back', frequencies_path}
+%h1= @frequency.name
+
+.frequencies_page
+  = render 'form'
+  
+  %p
+    and includes #{pluralize(@frequency.friends.length, 'friend')}
+    %br/
+    = render 'friends/name_list', :friends => @frequency.friends     
+
+
+
+
+.admin
+  = link_to 'delete', @frequency, :confirm => 'Are you sure?', :method => :delete
+
+
