@@ -1,11 +1,12 @@
 class FriendsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource #:find_by => :username
 
   respond_to :html, :json
 
   def autocomplete
-    @friends = Friend.limit(10).where(:user_id => current_user.id).search_for_name(params[:name])
-    respond_with(@friends)
+    @friends = (params[:term] == "") ? [] : Friend.limit(10).where(:user_id => current_user.id, :name.matches => '%'+params[:term]+'%')
+
+    respond_with(@friends.collect{ |friend| friend.name })
   end
 
 

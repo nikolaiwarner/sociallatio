@@ -1,10 +1,10 @@
 $(document).ready(function(){
   
-  $('.datetimepicker').datetimepicker();
+  $('.datetimepicker').datepicker();
 
   $(".autocomplete").autocomplete({
-    source: "autocomplete.js",
-    minLength: 3
+    source: "/friends/autocomplete.json",
+    minLength: 0
   });
 
 

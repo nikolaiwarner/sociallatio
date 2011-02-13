@@ -45,6 +45,9 @@ class InteractionsController < ApplicationController
     @interaction = Interaction.new(params[:interaction])
 
     @interaction.user = current_user
+   
+    @friend = Friend.find_by_name params[:interaction_friend_name]
+    @interaction.friend_id = @friend.id if @friend
 
     respond_to do |format|
       if @interaction.save

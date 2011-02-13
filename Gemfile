@@ -6,6 +6,7 @@ gem 'devise'
 gem 'cancan'
 gem 'paperclip'
 gem "high_voltage"
+gem "meta_where"
 gem 'jquery-rails', '>= 0.2.6'
 
 gem 'sqlite3'

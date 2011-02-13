@@ -1,15 +1,11 @@
-%p#notice= notice
 %p
   %b Friend:
-  = @interaction.friend_id
+  = @interaction.friend.name || "Unknown"
 %p
-  %b User:
-  = @interaction.user_id
-%p
-  %b Datetime:
+  %b When:
   = @interaction.datetime
 %p
-  %b Description:
+  %b About:
   = @interaction.description
 %p
   %b Interaction type:
