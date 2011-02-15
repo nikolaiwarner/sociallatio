@@ -4,4 +4,10 @@
 
 * pillars
   * reminder system
+    * emails?
   * friend score
+  
+  
+* todo
+  * get mailer working
+  * use carrierwave for pics

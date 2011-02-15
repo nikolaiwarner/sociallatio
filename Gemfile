@@ -4,7 +4,7 @@ gem 'rails', '3.0.1'
 gem 'haml'
 gem 'devise'
 gem 'cancan'
-gem 'paperclip'
+gem 'carrierwave'
 gem "high_voltage"
 gem "meta_where"
 gem 'jquery-rails', '>= 0.2.6'
