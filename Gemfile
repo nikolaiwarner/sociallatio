@@ -5,6 +5,7 @@ gem 'haml'
 gem 'devise'
 gem 'cancan'
 gem 'carrierwave'
+gem 'fog'
 gem "high_voltage"
 gem "meta_where"
 gem 'jquery-rails', '>= 0.2.6'

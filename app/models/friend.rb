@@ -1,4 +1,7 @@
 class Friend < ActiveRecord::Base
+
+  mount_uploader :portrait, PortraitUploader
+
   belongs_to :frequency
   belongs_to :user
   has_many :interactions

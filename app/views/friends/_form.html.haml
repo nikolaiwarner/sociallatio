@@ -1,4 +1,4 @@
-= form_for(@friend) do |f|
+= form_for(@friend, :html => {:multipart => true}) do |f|
   - if @friend.errors.any?
     #error_explanation
       %h2
@@ -13,5 +13,13 @@
   .field
     = f.label :frequency_id, "frequency to interact: "
     = select :friend, :frequency_id, Frequency.all.collect {|p| [ p.name, p.id ] }
+    
+  .field
+    = f.label :portrait, "upload your friend's portrait:"
+    = image_tag(@friend.portait_url) if @friend.portrait?
+    = f.file_field :portrait
+    = f.label :remote_avatar_url, ", or from a url:"
+    = f.text_field :remote_avatar_url
+    
   .actions
     = f.submit
