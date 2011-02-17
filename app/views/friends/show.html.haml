@@ -2,6 +2,10 @@
 
 .friend_page
 
+  .portrait
+    = image_tag(@friend.portait_url) if @friend.portrait?
+    
+
   .status
     #{pluralize @friend.score, 'point'}
     \-
