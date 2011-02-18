@@ -19,7 +19,7 @@
     = image_tag(@friend.portait_url) if @friend.portrait?
     = f.file_field :portrait
     = f.label :remote_avatar_url, ", or from a url:"
-    = f.text_field :remote_avatar_url
+    = f.text_field :remote_portrait_url
     
   .actions
     = f.submit

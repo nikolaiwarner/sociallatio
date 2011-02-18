@@ -7,7 +7,13 @@
     * emails?
   * friend score
   
+  * graphs / timeline ?
+  
+  * multi-friend events
+    
+  
   
 * todo
   * get mailer working
   * use carrierwave for pics
+  *  recent history list on profile page

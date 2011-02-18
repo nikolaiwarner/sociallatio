@@ -21,18 +21,16 @@ class PortraitUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  process :resize_to_fill => [200, 200]
-  process :convert => 'png'
   
-  def scale(width, height)
-    # do something
+  def filename
+    @name ||= ActiveSupport::SecureRandom.hex
+    "#{@name}.png" if original_filename
   end
   
 
-  def filename
-    super + '.png'
-  end
+  # Process files as they are uploaded:
+  process :resize_to_fill => [200, 200]
+  process :convert => 'png'
   
 
   # Create different versions of your uploaded files:
@@ -45,10 +43,5 @@ class PortraitUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
-
-  # Override the filename of the uploaded files:
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
-
+  
 end

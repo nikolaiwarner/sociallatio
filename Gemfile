@@ -4,6 +4,7 @@ gem 'rails', '3.0.1'
 gem 'haml'
 gem 'devise'
 gem 'cancan'
+gem 'rmagick'
 gem 'carrierwave'
 gem 'fog'
 gem "high_voltage"

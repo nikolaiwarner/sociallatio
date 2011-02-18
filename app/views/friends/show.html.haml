@@ -3,7 +3,7 @@
 .friend_page
 
   .portrait
-    = image_tag(@friend.portait_url) if @friend.portrait?
+    = image_tag(@friend.portrait_url) if @friend.portrait?
     
 
   .status
@@ -20,3 +20,17 @@
         = f.text_area :notes
       .actions
         = f.submit :value => "save notes"
+
+
+  
+  .history
+    - @friend.interactions.each do |interaction|
+      .interaction           
+        = "#{time_ago_in_words interaction.datetime} ago" 
+        |
+        = interaction.interaction_type.name
+        |
+        = interaction.description
+        |
+        = link_to 'edit', edit_interaction_path(interaction)
+      
