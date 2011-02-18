@@ -1,4 +1,9 @@
-- if current_user
-  = render 'friends/tasks'  
+.dashboard
+  - if current_user
+
+
+    %h1
+      today
   
-  
+    .friends
+      = raw current_user.friends.collect { |friend|  link_to(friend.name, friend) if friend.needs_an_interaction?(current_user) }.compact.join(', ')

@@ -120,6 +120,7 @@ div.field, div.actions {
     padding-right: 10px; }
 
 .nav {
+  clear: both;
   text-align: center;
   font-size: 20px;
   width: 700px;
@@ -157,6 +158,25 @@ a.friend_needs_interaction {
   background-color: #db7093;
   color: white; }
 
+.history .interaction {
+  height: 20px;
+  padding-top: 5px;
+  border-top: 1px solid #dddddd;
+  font-size: 15px;
+  clear: both; }
+  .history .interaction div {
+    float: left;
+    padding: 5px;
+    width: 150px; }
+  .history .interaction .date {
+    color: black; }
+  .history .interaction .description {
+    width: 350px; }
+
+.portrait {
+  padding: 5px;
+  text-align: center; }
+
 .friend_page .status {
   text-transform: lowercase;
   padding: 10px;
@@ -176,3 +196,6 @@ form {
   width: 700px; }
   form .actions {
     padding-top: 20px; }
+
+.dashboard .friends {
+  text-align: center; }

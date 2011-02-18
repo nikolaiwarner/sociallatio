@@ -1,17 +1,16 @@
-%h1= @friend.name
-
 .friend_page
 
   .portrait
     = image_tag(@friend.portrait_url) if @friend.portrait?
-    
+  %h1
+    = @friend.name    
 
   .status
     #{pluralize @friend.score, 'point'}
     \-
     = @friend.frequency.name
-    \- 
-    = link_to 'edit', edit_friend_path(@friend)
+     
+    
     
   
   .notes
@@ -24,13 +23,17 @@
 
   
   .history
-    - @friend.interactions.each do |interaction|
-      .interaction           
-        = "#{time_ago_in_words interaction.datetime} ago" 
-        |
-        = interaction.interaction_type.name
-        |
-        = interaction.description
-        |
-        = link_to 'edit', edit_interaction_path(interaction)
+    - @friend.interactions.order('datetime asc').each do |interaction|
+      .interaction
+        .date       
+          = "#{time_ago_in_words interaction.datetime} ago" if interaction.datetime
+        .name
+          = interaction.interaction_type.name
+        .description
+          = interaction.description
+        .edit
+          = link_to 'edit', edit_interaction_path(interaction)
       
+      
+  .nav
+    = link_to "edit #{@friend.name}", edit_friend_path(@friend)

@@ -16,7 +16,7 @@
     
   .field
     = f.label :portrait, "upload your friend's portrait:"
-    = image_tag(@friend.portait_url) if @friend.portrait?
+    = image_tag(@friend.portrait_url(:thumb)) if @friend.portrait?
     = f.file_field :portrait
     = f.label :remote_avatar_url, ", or from a url:"
     = f.text_field :remote_portrait_url

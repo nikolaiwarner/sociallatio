@@ -23,13 +23,12 @@ class PortraitUploader < CarrierWave::Uploader::Base
 
   
   def filename
-    @name ||= ActiveSupport::SecureRandom.hex
-    "#{@name}.png" if original_filename
+    super + '.png'
   end
   
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [200, 200]
+  process :resize_to_fill => [250, 200]
   process :convert => 'png'
   
 

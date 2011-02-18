@@ -44,6 +44,8 @@ class InteractionsController < ApplicationController
   def create
     @interaction = Interaction.new(params[:interaction])
 
+    #puts @interaction.datetime.to_s + "--------------------"
+
     @interaction.user = current_user
    
     @friend = Friend.find_by_name params[:interaction_friend_name]
