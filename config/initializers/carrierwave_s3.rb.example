@@ -1,0 +1,5 @@
+CarrierWave.configure do |config|
+  config.s3_access_key_id = 'XXXX'
+  config.s3_secret_access_key = 'XXXX'
+  config.s3_bucket = 'XXXX'
+end
