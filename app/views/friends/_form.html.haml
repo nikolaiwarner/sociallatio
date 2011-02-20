@@ -15,11 +15,14 @@
     = select :friend, :frequency_id, Frequency.all.collect {|p| [ p.name, p.id ] }
     
   .field
-    = f.label :portrait, "upload your friend's portrait:"
-    = image_tag(@friend.portrait_url(:thumb)) if @friend.portrait?
+    = f.label :portrait, "your friend's portrait:"
+    - if @friend.portrait?
+      = image_tag(@friend.portrait_url(:thumb))
+    
     = f.file_field :portrait
-    = f.label :remote_avatar_url, ", or from a url:"
+    %br/
+    = f.label :remote_avatar_url, "or from a url:"
     = f.text_field :remote_portrait_url
     
   .actions
-    = f.submit
+    = f.submit :value => 'save'

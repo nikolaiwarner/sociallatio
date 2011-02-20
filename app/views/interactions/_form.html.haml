@@ -15,9 +15,11 @@
     
   .field
     = f.label :datetime, "when: "
-    = f.text_field :datetime, {:class => "datepicker"}
+    /= f.text_field :datetime, {:class => "datepicker"}
+    = date_select(:interaction, :datetime, :default => Date.today)
+    
   .field
-    = f.label :interaction_type_id, "What: "
+    = f.label :interaction_type_id, "type: "
     = f.select :interaction_type_id, InteractionType.all.collect {|p| [ p.name, p.id ] }
     
   
@@ -27,8 +29,7 @@
     = f.text_area :description
   
   .field
-    = f.label :points
-    %br/
+    = f.label :points, 'bonus points:'
     = f.text_field :points
   .actions
-    = f.submit
+    = f.submit :value => 'save'

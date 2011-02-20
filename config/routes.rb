@@ -10,6 +10,7 @@ Sociallatio::Application.routes.draw do
   resources :friends do 
     collection do
       get :autocomplete
+      get :best
     end
   end
   

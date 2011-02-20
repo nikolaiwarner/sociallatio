@@ -14,7 +14,11 @@ class FriendsController < ApplicationController
     @friends = Friend.where(:user_id => current_user.id).order('name ASC')
     respond_with(@friends)
   end
-
+  
+  def best
+    @friends = Friend.where(:user_id => current_user.id).order('score DESC')
+    respond_with(@friends)
+  end
 
   def show
     @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
@@ -52,6 +56,8 @@ class FriendsController < ApplicationController
 
   def update
     @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+
+
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])

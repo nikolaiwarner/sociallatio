@@ -1,13 +1,13 @@
 .friend_page
+  %h1
+    = @friend.name 
   .info
-    %h1
-      = @friend.name 
+    .portrait
+      = image_tag(@friend.portrait_url) if @friend.portrait?
     .status
       #{pluralize @friend.score, 'point'}
       \-
       = @friend.frequency.name
-    .portrait
-      = image_tag(@friend.portrait_url) if @friend.portrait?
   .notes
     = form_for(@friend) do |f|
       .field
@@ -16,16 +16,14 @@
         = f.submit :value => "save notes"
           
   .history
-    - @friend.interactions.order('datetime asc').each do |interaction|
+    - @friend.interactions.order('datetime DESC').each do |interaction|
       .interaction
         .date       
-          = "#{time_ago_in_words interaction.datetime} ago" if interaction.datetime
+          = raw link_to("#{time_ago_in_words(interaction.datetime)} ago", edit_interaction_path(interaction)) if interaction.datetime
         .name
           = interaction.interaction_type.name
         .description
           = interaction.description
-        .edit
-          = link_to 'edit', edit_interaction_path(interaction)
       
       
   .nav

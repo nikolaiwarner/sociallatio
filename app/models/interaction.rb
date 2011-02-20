@@ -6,5 +6,14 @@ class Interaction < ActiveRecord::Base
   validates :friend_id, :presence => true
   validates :datetime, :presence => true
 
+
+  after_create :assign_points
+  
+  
+  def assign_points
+    friend.score = friend.score + points + interaction_type.points
+    friend.save
+  end
+
   
 end

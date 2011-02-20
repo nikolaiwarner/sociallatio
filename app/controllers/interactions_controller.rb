@@ -44,8 +44,6 @@ class InteractionsController < ApplicationController
   def create
     @interaction = Interaction.new(params[:interaction])
 
-    #puts @interaction.datetime.to_s + "--------------------"
-
     @interaction.user = current_user
    
     @friend = Friend.find_by_name params[:interaction_friend_name]
@@ -53,7 +51,7 @@ class InteractionsController < ApplicationController
 
     respond_to do |format|
       if @interaction.save
-        format.html { redirect_to(root_path, :notice => 'Interaction was successfully created.') }
+        format.html { redirect_to(friend_path(@interaction.friend), :notice => 'Interaction was successfully created.') }
         format.xml  { render :xml => @interaction, :status => :created, :location => @interaction }
       else
         format.html { render :action => "new" }
@@ -69,7 +67,7 @@ class InteractionsController < ApplicationController
 
     respond_to do |format|
       if @interaction.update_attributes(params[:interaction])
-        format.html { redirect_to(@interaction, :notice => 'Interaction was successfully updated.') }
+        format.html { redirect_to(friend_path(@interaction.friend), :notice => 'Interaction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

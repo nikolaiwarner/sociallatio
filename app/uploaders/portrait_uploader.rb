@@ -15,6 +15,10 @@ class PortraitUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  def cache_dir
+    "#{RAILS_ROOT}/tmp/uploads"
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -23,7 +27,7 @@ class PortraitUploader < CarrierWave::Uploader::Base
 
   
   def filename
-    super + '.png'
+    "#{original_filename}.png" if original_filename
   end
   
 
