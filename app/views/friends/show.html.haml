@@ -1,27 +1,20 @@
 .friend_page
-
-  .portrait
-    = image_tag(@friend.portrait_url) if @friend.portrait?
-  %h1
-    = @friend.name    
-
-  .status
-    #{pluralize @friend.score, 'point'}
-    \-
-    = @friend.frequency.name
-     
-    
-    
-  
+  .info
+    %h1
+      = @friend.name 
+    .status
+      #{pluralize @friend.score, 'point'}
+      \-
+      = @friend.frequency.name
+    .portrait
+      = image_tag(@friend.portrait_url) if @friend.portrait?
   .notes
     = form_for(@friend) do |f|
       .field
         = f.text_area :notes
       .actions
         = f.submit :value => "save notes"
-
-
-  
+          
   .history
     - @friend.interactions.order('datetime asc').each do |interaction|
       .interaction

@@ -53,7 +53,7 @@ class InteractionsController < ApplicationController
 
     respond_to do |format|
       if @interaction.save
-        format.html { redirect_to(@interaction, :notice => 'Interaction was successfully created.') }
+        format.html { redirect_to(root_path, :notice => 'Interaction was successfully created.') }
         format.xml  { render :xml => @interaction, :status => :created, :location => @interaction }
       else
         format.html { render :action => "new" }

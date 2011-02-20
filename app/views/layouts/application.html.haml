@@ -23,6 +23,8 @@
     .wrapper
       .header
         = link_to "sociallatio", root_url
+        .links
+          = link_to "interact", new_interaction_path
       .content
         = render 'layouts/notices'
         = yield

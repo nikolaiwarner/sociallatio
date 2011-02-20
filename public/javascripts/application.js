@@ -1,7 +1,7 @@
 $(document).ready(function(){
   
   if ($('.datepicker').length > 0) {
-    $('.datepicker').datepicker();
+    $('.datepicker').timepicker();
   }
 
   $(".autocomplete").autocomplete({

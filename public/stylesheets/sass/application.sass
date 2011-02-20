@@ -104,6 +104,7 @@ div
 .header
   width: 700px
   margin: 0px auto
+  margin-bottom: 5px
   border-bottom: 1px solid #ddd
   padding: 10px
   font-size: 25px
@@ -114,6 +115,15 @@ div
     
     &:hover
       color: #fff
+      
+  .links
+    float: right
+    
+    a
+      color: #DB7093
+      
+      &:hover
+        color: #fff
   
 
 .content
@@ -208,15 +218,32 @@ a.friend_needs_interaction
 
 
 
+
+
 .friend_page
-  .status
-    text-transform: lowercase
-    padding: 10px
-    text-align: center
+  
+  .info
+    width: 350px
+    float: left
+  
+    .status
+      text-transform: lowercase
+      padding: 10px
+      text-align: center
+    
 
   .notes
+    width: 350px
+    float: left
+    
+    textarea
+      width: 340px
+    
     .actions
       padding: 0px
+    
+    
+    
     
 
 .frequencies_page

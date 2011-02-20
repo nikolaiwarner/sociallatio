@@ -91,6 +91,7 @@ div.field, div.actions {
 .header {
   width: 700px;
   margin: 0px auto;
+  margin-bottom: 5px;
   border-bottom: 1px solid #dddddd;
   padding: 10px;
   font-size: 25px;
@@ -99,6 +100,12 @@ div.field, div.actions {
     color: #333333; }
     .header a:hover {
       color: white; }
+  .header .links {
+    float: right; }
+    .header .links a {
+      color: #db7093; }
+      .header .links a:hover {
+        color: white; }
 
 .content {
   width: 700px;
@@ -177,12 +184,20 @@ a.friend_needs_interaction {
   padding: 5px;
   text-align: center; }
 
-.friend_page .status {
-  text-transform: lowercase;
-  padding: 10px;
-  text-align: center; }
-.friend_page .notes .actions {
-  padding: 0px; }
+.friend_page .info {
+  width: 350px;
+  float: left; }
+  .friend_page .info .status {
+    text-transform: lowercase;
+    padding: 10px;
+    text-align: center; }
+.friend_page .notes {
+  width: 350px;
+  float: left; }
+  .friend_page .notes textarea {
+    width: 340px; }
+  .friend_page .notes .actions {
+    padding: 0px; }
 
 .frequencies_page {
   text-align: center; }

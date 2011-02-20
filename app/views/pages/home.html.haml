@@ -4,6 +4,13 @@
 
     %h1
       today
+      
+    
   
     .friends
-      = raw current_user.friends.collect { |friend|  link_to(friend.name, friend) if friend.needs_an_interaction?(current_user) }.compact.join(', ')
+      - if current_user.friends.length < 1
+        = link_to "add a new friend", new_friend_path
+      - else
+        - friends_today = current_user.friends.collect { |friend|  link_to(friend.name, friend) if friend.needs_an_interaction?(current_user) }.compact.join(', ')
+        = (friends_today != '') ? raw(friends_today) : 'relax. enjoy some personal time.'
+        
