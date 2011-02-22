@@ -1,0 +1,10 @@
+- interactions.each do |interaction|
+  .interaction
+    .date       
+      = raw link_to("#{time_ago_in_words(interaction.datetime)} ago", edit_interaction_path(interaction)) if interaction.datetime
+    .name
+      = interaction.interaction_type.name
+    .friend
+      = link_to interaction.friend.name, friend_path(interaction.friend)
+    .description
+      = interaction.description

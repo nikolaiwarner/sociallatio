@@ -1,11 +1,9 @@
 
 * dashboard
-  * list who needs attention
-
+  
 * pillars
   * reminder system
     * emails?
-  * friend score
   
   * graphs / timeline ?
   
@@ -16,5 +14,4 @@
   
 * todo
   * get mailer working
-  * use carrierwave for pics
-  *  recent history list on profile page
+  

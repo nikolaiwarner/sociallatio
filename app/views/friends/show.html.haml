@@ -16,15 +16,7 @@
         = f.submit :value => "save notes"
           
   .history
-    - @friend.interactions.order('datetime DESC').each do |interaction|
-      .interaction
-        .date       
-          = raw link_to("#{time_ago_in_words(interaction.datetime)} ago", edit_interaction_path(interaction)) if interaction.datetime
-        .name
-          = interaction.interaction_type.name
-        .description
-          = interaction.description
-      
+    = render 'interactions/list', :interactions => @friend.interactions.order('datetime DESC')      
       
   .nav
     = link_to "edit #{@friend.name}", edit_friend_path(@friend)

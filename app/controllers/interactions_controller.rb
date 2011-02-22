@@ -48,6 +48,8 @@ class InteractionsController < ApplicationController
    
     @friend = Friend.find_by_name params[:interaction_friend_name]
     @interaction.friend_id = @friend.id if @friend
+    
+    @interaction.points ||= 0
 
     respond_to do |format|
       if @interaction.save

@@ -1,25 +1,8 @@
 %h1 your interactions
-%table
-  %tr
-    %th Friend
-    %th User
-    %th Datetime
-    %th Description
-    %th Interaction type
-    %th Points
-    %th
-    %th
-    %th
-  - @interactions.each do |interaction|
-    %tr
-      %td= interaction.friend_id
-      %td= interaction.user_id
-      %td= interaction.datetime
-      %td= interaction.description
-      %td= interaction.interaction_type_id
-      %td= interaction.points
-      %td= link_to 'Show', interaction
-      %td= link_to 'Edit', edit_interaction_path(interaction)
-      %td= link_to 'Destroy', interaction, :confirm => 'Are you sure?', :method => :delete
-%br/
-= link_to 'New Interaction', new_interaction_path
+
+.nav
+  = link_to 'new interaction', new_interaction_path
+
+.history
+  = render 'list', :interactions => @interactions.order('datetime DESC')      
+  
