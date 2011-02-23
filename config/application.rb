@@ -42,7 +42,7 @@ module Sociallatio
     config.logger    = Logger.new(STDOUT)
     config.log_level = :info
     
-    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    config.action_mailer.default_url_options = { :host => 'sociallatio.com' }
     
     
   end
