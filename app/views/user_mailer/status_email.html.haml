@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %meta{ :content => "text/html; charset=UTF-8", :http-equiv => "Content-Type" }
+  %body
+    %h1
+      Today you might consider hanging out with:
+    %p
+      = raw(current_user.friends.collect { |friend|  link_to(friend.name, friend_url(friend)) if friend.needs_an_interaction?(user) }.compact.join(', '))
+    %p
+      Your friends miss you!
+      %br/
+      = @url
+    
