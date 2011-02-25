@@ -1,3 +1,18 @@
+var sociallatio = {
+
+  learning: {
+    reveal_info: function() {
+      $('.hidden').fadeIn();
+    }
+  }
+
+}
+
+
+
+
+
+
 $(document).ready(function(){
   
   if ($('.datepicker').length > 0) {

@@ -1,0 +1,17 @@
+.learn_page
+
+  .nav
+    %a{ :href=>"#", :onclick=>"sociallatio.learning.reveal_info();" }
+      who is this?
+    |
+    = link_to "next", learn_friends_path
+    
+  .info
+    .portrait
+      = image_tag(@friend.portrait_url) if @friend.portrait?
+    
+  .hidden
+    %h1
+      = @friend.name
+    .nav
+      = link_to 'view friend', friend_path(@friend)

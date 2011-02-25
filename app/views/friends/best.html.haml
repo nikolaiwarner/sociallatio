@@ -1,6 +1,5 @@
-.friend_page
+.best_friends
   - @friends.each do |friend|
     = link_to friend.name, friend_path(friend)
-    |
-    = friend.score
+    = ": #{friend.score}"
     %br/

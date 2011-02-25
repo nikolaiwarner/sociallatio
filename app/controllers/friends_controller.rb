@@ -19,6 +19,13 @@ class FriendsController < ApplicationController
     @friends = Friend.where(:user_id => current_user.id).order('score DESC')
     respond_with(@friends)
   end
+  
+  def learn
+    # show random friend
+    offset = rand(Friend.where(:user_id => current_user.id).count)
+    @friend = Friend.first(:offset => offset)
+    respond_with(@friend)
+  end
 
   def show
     @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])

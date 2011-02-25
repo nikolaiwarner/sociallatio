@@ -11,6 +11,7 @@ Sociallatio::Application.routes.draw do
     collection do
       get :autocomplete
       get :best
+      get :learn
     end
   end
   

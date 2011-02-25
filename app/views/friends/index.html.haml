@@ -1,7 +1,11 @@
 %h1 your friends
 
 .nav
-  = link_to "new friend", new_friend_path
+  = link_to "new friend", new_friend_path 
+  |
+  = link_to "best friends", best_friends_path 
+  |
+  = link_to "learn your friends", learn_friends_path 
 
 = render 'friends/name_list', :friends => @friends     
       

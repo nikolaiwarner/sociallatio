@@ -196,6 +196,9 @@ a.friend_needs_interaction {
   .portrait img {
     outline: 1px solid #aaaaaa; }
 
+.best_friends {
+  text-align: center; }
+
 .friend_page .info {
   width: 350px;
   float: left; }
@@ -229,3 +232,6 @@ form {
 
 .dashboard .friends {
   text-align: center; }
+
+.hidden {
+  display: none; }
