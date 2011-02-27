@@ -30,6 +30,6 @@
   
   .field
     = f.label :points, 'bonus points:'
-    = f.text_field :points
+    = f.text_field :points, :value => '0'
   .actions
     = f.submit :value => 'save'

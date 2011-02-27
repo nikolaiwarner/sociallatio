@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
 
 
   def index
-    @interactions = Interaction.where(:user_id => current_user.id)
+    @interactions = Interaction.where(:user_id => current_user.id).order('datetime DESC').paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,7 +48,7 @@ class InteractionsController < ApplicationController
     if params[:interaction_friend_name].include? ','
       friend_names = params[:interaction_friend_name].split(',').collect{|friend| friend.strip }
     else
-      friend_names = [params[:interaction_friend_name]]
+      friend_names = [params[:interaction_friend_name].gsub(',','').strip]
     end
    
     friend_names.each do |friend_name|
@@ -56,14 +56,16 @@ class InteractionsController < ApplicationController
       interaction.user = current_user
     
       friend = Friend.find_by_name friend_name
-      interaction.friend_id = friend.id if friend
+      if friend
+        interaction.friend_id = friend.id 
     
-      interaction.points ||= 0
+        interaction.points ||= 0
       
-      interaction.save
+        interaction.save
+      end
     end
    
-    redirect_to(friend_path(@interaction.friend), :notice => 'Interaction was successfully created.')
+    redirect_to(interactions_path, :notice => 'Interaction noted.')
   end
 
 

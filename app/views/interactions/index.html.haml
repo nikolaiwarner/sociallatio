@@ -4,5 +4,6 @@
   = link_to 'new interaction', new_interaction_path
 
 .history
-  = render 'list', :interactions => @interactions.order('datetime DESC')      
+  = render 'list', :interactions => @interactions      
   
+  = will_paginate @interactions

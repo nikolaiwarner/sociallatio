@@ -7,13 +7,12 @@ gem 'cancan'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'fog'
-gem "high_voltage"
-gem "meta_where"
+gem 'high_voltage'
+gem 'meta_where'
 gem 'jquery-rails', '>= 0.2.6'
+gem 'will_paginate', '~> 3.0.pre2'
 
 gem 'sqlite3'
-
-# gem 'aws-s3', :require => 'aws/s3'
 
 group :development, :test do
   gem "rspec-rails", ">= 2.4.1"
