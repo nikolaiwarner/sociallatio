@@ -146,6 +146,9 @@ div.field, div.actions {
   .admin a {
     padding-left: 20px; }
 
+.friendname_autocomplete {
+  width: 600px; }
+
 .ui-autocomplete {
   width: 300px;
   list-style: none; }

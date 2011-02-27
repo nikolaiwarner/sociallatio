@@ -10,8 +10,8 @@
           
           
   .field
-    = f.label :friend_id, "the friend: " 
-    = text_field_tag :interaction_friend_name, "#{@interaction.friend.name if @interaction.friend}", { :class => "autocomplete" }
+    = f.label :friend_id, "the friend(s): " 
+    = text_field_tag :interaction_friend_name, "#{@interaction.friend.name if @interaction.friend}", { :class => "friendname_autocomplete" }
     
   .field
     = f.label :datetime, "when: "
