@@ -6,7 +6,7 @@ class Friend < ActiveRecord::Base
   belongs_to :user
   has_many :interactions
   
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => {:scope => :user_id}
   
   def needs_an_interaction? user
     interaction = Interaction.where(:user_id => user.id, :friend_id => self.id).order(:datetime).last
