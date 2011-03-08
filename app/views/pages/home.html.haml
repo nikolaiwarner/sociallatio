@@ -4,13 +4,23 @@
 
     %h1
       today
-      
-    
-  
+        
     .friends
       - if current_user.friends.length < 1
         = link_to "add a new friend", new_friend_path
       - else
         - friends_today = current_user.friends.collect { |friend|  link_to(friend.name, friend) if friend.needs_an_interaction?(current_user) }.compact.join(', ')
         = (friends_today != '') ? raw(friends_today) : 'relax. enjoy some personal time.'
+        
+
+    - if current_user.friends.length > 1
+      - friends_soon = current_user.friends.collect { |friend|  link_to(friend.name, friend) if friend.needs_an_interaction?(current_user, Time.now + 7.days) }.compact.join(', ')
+      
+      - if friends_soon != ''
+        %h2
+          soon
+          
+        .friends
+          = raw(friends_soon)
+        
         

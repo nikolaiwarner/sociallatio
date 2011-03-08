@@ -16,7 +16,9 @@
         = f.submit :value => "save notes"
           
   .history
-    = render 'interactions/list', :interactions => @friend.interactions.order('datetime DESC')      
+    = render 'interactions/list', :interactions => @interactions
+    %br/
+    = paginate @interactions      
       
   .nav
     = link_to "edit #{@friend.name}", edit_friend_path(@friend)

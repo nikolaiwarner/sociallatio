@@ -6,4 +6,5 @@
 .history
   = render 'list', :interactions => @interactions      
   
-  = will_paginate @interactions
+  %br/
+  = paginate @interactions

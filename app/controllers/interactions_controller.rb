@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
 
 
   def index
-    @interactions = Interaction.where(:user_id => current_user.id).order('datetime DESC').paginate(:page => params[:page])
+    @interactions = Interaction.where(:user_id => current_user.id).order('datetime DESC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

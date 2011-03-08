@@ -10,7 +10,7 @@ gem 'fog'
 gem 'high_voltage'
 gem 'meta_where'
 gem 'jquery-rails', '>= 0.2.6'
-gem 'will_paginate', '~> 3.0.pre2'
+gem 'kaminari'
 
 gem 'sqlite3'
 

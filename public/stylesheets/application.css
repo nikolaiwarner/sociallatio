@@ -46,7 +46,7 @@ a {
     color: white;
     background-color: #db7093; }
 
-h1 {
+h1, h2 {
   text-align: center; }
 
 div.field, div.actions {
@@ -238,3 +238,6 @@ form {
 
 .hidden {
   display: none; }
+
+.pagination {
+  text-align: center; }

@@ -8,4 +8,7 @@
   = link_to "learn your friends", learn_friends_path 
 
 = render 'friends/name_list', :friends => @friends     
+
+%br/
+= paginate @friends
       

@@ -11,7 +11,7 @@ class FriendsController < ApplicationController
 
 
   def index
-    @friends = Friend.where(:user_id => current_user.id).order('name ASC')
+    @friends = Friend.where(:user_id => current_user.id).order('name ASC').page(params[:page]).per(100)
     respond_with(@friends)
   end
   
@@ -29,6 +29,7 @@ class FriendsController < ApplicationController
 
   def show
     @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+    @interactions = @friend.interactions.order('datetime DESC').page(params[:page]).per(10)
     respond_with(@friend)
   end
 

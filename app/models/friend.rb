@@ -8,9 +8,9 @@ class Friend < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => {:scope => :user_id}
   
-  def needs_an_interaction? user
+  def needs_an_interaction? user, time=Time.now
     interaction = Interaction.where(:user_id => user.id, :friend_id => self.id).order(:datetime).last
-    return interaction ? days_since_interaction(interaction, Time.now) > self.frequency.number_of_days : true
+    return interaction ? days_since_interaction(interaction, time) > self.frequency.number_of_days : true
   end
   
   def seconds_since_interaction interaction, datetime=Time.now
