@@ -7,6 +7,7 @@
     %link{ :rel => "shortcut icon", :href => '/images/favicon.png' }
     %link{ :rel => "apple-touch-icon", :href => '/images/favicon.png' }
     %link{ :media => "screen", :rel => "stylesheet", :type => "text/css", :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css" }
+    %link{ :rel => "stylesheet", :href => "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" }
     
     %script{ :type => "text/javascript", :src => "https://www.google.com/jsapi?key=ABQIAAAALFcVECtS_cckPZPP6gEvtBQNqA7PXSQWBnZcv0WRsLc5vt2EwhRNL4XDqi3F3gVWu6gud-eJy35NIA" }
     :javascript
@@ -19,20 +20,22 @@
             families: [ 'Neuton', 'Josefin Slab' ]
           }});
       });
+    %script{ :src => "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js" }
+
     = javascript_include_tag "rails", "jquery-ui-timepicker-addon", "application"
     = csrf_meta_tag
   %body
-    .wrapper
-      .header
+    .wrapper(data-role="page")
+      .header(data-role="header")
         = link_to "sociallatio", root_url
         .links
           - if current_user
             = link_to "interact", new_interaction_path
-      .content
+      .content(data-role="content")
         = render 'layouts/notices'
         = yield
       .footer_push
-    .footer
+    .footer(data-role="footer")
       - if current_user
         = link_to("friends", friends_path)
         = link_to("interactions", interactions_path) 
