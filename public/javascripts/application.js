@@ -18,7 +18,7 @@ $(document).ready(function(){
   if ($('.datepicker').length > 0) {
     $('.datepicker').timepicker();
   }
-
+  
   // Autocomplete
   $(".friendname_autocomplete")
     .bind( "keydown", function( event ) {

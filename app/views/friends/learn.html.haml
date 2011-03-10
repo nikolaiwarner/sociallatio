@@ -1,17 +1,21 @@
+%h1
+  = h content_for(:title, "learn")
+
+
 .learn_page
 
-  .nav
-    %a{ :href=>"#", :onclick=>"sociallatio.learning.reveal_info();" }
+  .nav(data-role="controlgroup" data-type="horizontal")
+    %a{ :href=>"#", :onclick=>"sociallatio.learning.reveal_info();", "data-role" => "button"}
       who is this?
-    |
-    = link_to "next", learn_friends_path
+    %a{ :href=>"#", :onclick=>"location.reload();", "data-role" => "button", "data-iconpos" => "right"}
+      next
     
   .info
-    .portrait
+    .friend_portrait
       = image_tag(@friend.portrait_url) if @friend.portrait?
     
   .hidden
-    %h1
+    %h2
       = @friend.name
     .nav
       = link_to 'view friend', friend_path(@friend)

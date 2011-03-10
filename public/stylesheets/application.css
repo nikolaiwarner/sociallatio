@@ -193,10 +193,10 @@ a.friend_needs_interaction {
   .history .interaction .description {
     width: 350px; }
 
-.portrait {
+.friend_portrait {
   padding: 5px;
   text-align: center; }
-  .portrait img {
+  .friend_portrait img {
     outline: 1px solid #aaaaaa; }
 
 .best_friends {

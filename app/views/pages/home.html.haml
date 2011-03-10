@@ -3,7 +3,7 @@
 
 
     %h1
-      today
+      = h content_for(:title, "today")
         
     .friends
       - if current_user.friends.length < 1

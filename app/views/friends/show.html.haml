@@ -1,8 +1,9 @@
+%h1
+  = h content_for(:title, @friend.name )
+
 .friend_page
-  %h1
-    = @friend.name 
   .info
-    .portrait
+    .friend_portrait
       = image_tag(@friend.portrait_url) if @friend.portrait?
     .status
       #{pluralize @friend.score, 'point'}
@@ -21,4 +22,4 @@
     = paginate @interactions      
       
   .nav
-    = link_to "edit #{@friend.name}", edit_friend_path(@friend)
+    = link_to "edit #{@friend.name}", edit_friend_path(@friend), {"data-role" => "button"}

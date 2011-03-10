@@ -1,0 +1,51 @@
+!!! 5
+%html
+  %head
+    %title Sociallatio
+    
+    = stylesheet_link_tag 'mobile'
+    
+    %link{ :rel => "shortcut icon", :href => '/images/favicon.png' }
+    %link{ :rel => "apple-touch-icon", :href => '/images/favicon.png' }
+    
+    %link{ :rel => "stylesheet", :href => "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" }
+    
+    %script{ :type => "text/javascript", :src => "https://www.google.com/jsapi?key=ABQIAAAALFcVECtS_cckPZPP6gEvtBQNqA7PXSQWBnZcv0WRsLc5vt2EwhRNL4XDqi3F3gVWu6gud-eJy35NIA" }
+    :javascript
+      google.load("jquery", "1.5.0");
+      google.load("jqueryui", "1.8.9");
+      google.load("webfont", "1.0.18");
+      google.setOnLoadCallback(function() {
+        WebFont.load({
+          google: {
+            families: [ 'Neuton', 'Josefin Slab' ]
+          }});
+      });
+    %script{ :src => "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js" }
+
+    = csrf_meta_tag
+  %body
+    .wrapper(data-role="page")
+      .header(data-role="header" data-position="fixed")
+        %h1
+          = yield :title
+	       
+        - if current_user
+          = link_to "interact", new_interaction_path, {:class => "ui-btn-right"}
+      .content(data-role="content")
+        = render 'layouts/notices'
+        = yield
+      .footer(data-role="footer" data-position="fixed")
+        - if current_user
+          %div(data-role="navbar")
+            %ul
+              %li
+                = link_to("dashboard", root_path, {"data-icon" => "home"})
+              %li
+                = link_to("friends", friends_path, {"data-icon" => "star"})
+              %li
+                = link_to("interact", interactions_path, {"data-icon" => "check"}) 
+              %li
+                = link_to("settings", page_path('settings'), {"data-icon" => "gear"}) 
+        - else(data-icon="plus")
+          = link_to("sign in", new_user_session_path)

@@ -1,7 +1,6 @@
-%h1 edit interaction
-= render 'form'
+%h1
+  = h content_for(:title, "edit interaction")
 
-   
     
 .admin
   = link_to 'delete', @interation, :confirm => 'Are you sure?', :method => :delete

@@ -1,3 +1,4 @@
-%h1 add a new friend
+%h1
+  = h content_for(:title, "add a new friend")
+
 = render 'form'
-= link_to 'Back', friends_path

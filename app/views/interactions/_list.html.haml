@@ -1,10 +1,10 @@
 - interactions.each do |interaction|
-  .interaction
-    .date       
+  .interaction(class='ui-grid-c')
+    .date(class='ui-block-a')
       = raw link_to("#{time_ago_in_words(interaction.datetime)} ago", edit_interaction_path(interaction)) if interaction.datetime
-    .name
+    .name(class='ui-block-b')
       = interaction.interaction_type.name
-    .friend
+    .friend(class='ui-block-c')
       = link_to interaction.friend.name, friend_path(interaction.friend)
-    .description
+    .description(class='ui-block-d')
       = interaction.description

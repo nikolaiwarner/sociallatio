@@ -1,7 +1,8 @@
-%h1 your interactions
+%h1
+  = h content_for(:title, "your interactions")
 
 .nav
-  = link_to 'new interaction', new_interaction_path
+  = link_to 'new interaction', new_interaction_path, {"data-role" => "button"}
 
 .history
   = render 'list', :interactions => @interactions      
