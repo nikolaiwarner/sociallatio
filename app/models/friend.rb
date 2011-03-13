@@ -33,4 +33,9 @@ class Friend < ActiveRecord::Base
     Friend.find_by_name(name_slug.gsub('_', ' '))
   end
   
+  def self.random for_user
+    offset = rand(Friend.where(:user_id => for_user.id).count)
+    Friend.first(:offset => offset)
+  end
+  
 end

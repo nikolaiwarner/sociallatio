@@ -24,13 +24,19 @@ class User < ActiveRecord::Base
   
   def setup_default_data
     # Interaction Types
-    ["Phone Call", "Hang Out", "Breakfast", "Lunch", "Dinner", "IM/Text", "Meeting", "Email", "Tweet"].each do |type|
+    ["Phone Call", "IM/Text", "Email", "Tweet"].each do |type|
       InteractionType.create!(:name => type, :user_id => self.id, :points => 1)
     end
+    InteractionType.create!(:name => "Meeting", :user_id => self.id, :points => 2)
+    InteractionType.create!(:name => "Lunch", :user_id => self.id, :points => 2)
+    InteractionType.create!(:name => "Dinner", :user_id => self.id, :points => 3)
+    InteractionType.create!(:name => "Hang Out", :user_id => self.id, :points => 5)
+ 
     
     # Frequencies
     Frequency.create!(:user_id => self.id, :name => "Daily", :number_of_days => 1)
     Frequency.create!(:user_id => self.id, :name => "Weekly", :number_of_days => 7)
+    Frequency.create!(:user_id => self.id, :name => "Bi-Weekly", :number_of_days => 14)
     Frequency.create!(:user_id => self.id, :name => "Monthly", :number_of_days => 30)
     Frequency.create!(:user_id => self.id, :name => "Bi-Monthly", :number_of_days => 60)
     Frequency.create!(:user_id => self.id, :name => "Quarterly", :number_of_days => 90)

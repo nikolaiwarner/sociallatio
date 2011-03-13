@@ -1,11 +1,14 @@
 !!! 5
 %html
   %head
-    %title Sociallatio
+    %title 
+      Sociallatio
+      = " | " + content_for(:title) if content_for?(:title)
     
-    = stylesheet_link_tag 'application'
     %link{ :rel => "shortcut icon", :href => '/images/favicon.png' }
     %link{ :rel => "apple-touch-icon", :href => '/images/favicon.png' }
+    
+    = stylesheet_link_tag 'application'
     %link{ :media => "screen", :rel => "stylesheet", :type => "text/css", :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/smoothness/jquery-ui.css" }
     
     %script{ :type => "text/javascript", :src => "https://www.google.com/jsapi?key=ABQIAAAALFcVECtS_cckPZPP6gEvtBQNqA7PXSQWBnZcv0WRsLc5vt2EwhRNL4XDqi3F3gVWu6gud-eJy35NIA" }
@@ -16,24 +19,25 @@
       google.setOnLoadCallback(function() {
         WebFont.load({
           google: {
-            families: [ 'Neuton', 'Josefin Slab' ]
+            families: [ 'Josefin Slab' ]
           }});
       });
 
-    = javascript_include_tag "rails", "jquery-ui-timepicker-addon", "application"
+    = javascript_include_tag "rails", "application"
     = csrf_meta_tag
   %body
-    .wrapper(data-role="page")
-      .header(data-role="header")
+    .wrapper
+      .header
         = link_to "sociallatio", root_url
         .links
           - if current_user
-            = link_to "interact", new_interaction_path
-      .content(data-role="content")
+            = (@friend && !@friend.name.blank?) ? link_to("interact", new_interaction_path({:friend => @friend.name+", "})) : link_to("interact", new_interaction_path)
+            
+      .content
         = render 'layouts/notices'
         = yield
       .footer_push
-    .footer(data-role="footer")
+    .footer
       - if current_user
         = link_to("friends", friends_path)
         = link_to("interactions", interactions_path) 

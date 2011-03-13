@@ -1,3 +1,6 @@
+%h1
+  = title("your best friends")
+
 .best_friends
   - @friends.each do |friend|
     = link_to friend.name, friend_path(friend)

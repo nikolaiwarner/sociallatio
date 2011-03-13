@@ -21,9 +21,7 @@ class FriendsController < ApplicationController
   end
   
   def learn
-    # show random friend
-    offset = rand(Friend.where(:user_id => current_user.id).count)
-    @friend = Friend.first(:offset => offset)
+    @friend = Friend.random current_user
     respond_with(@friend)
   end
 
@@ -36,6 +34,7 @@ class FriendsController < ApplicationController
 
   def new
     @friend = Friend.new
+    @friend.name = ""
     respond_with(@friend)
   end
 

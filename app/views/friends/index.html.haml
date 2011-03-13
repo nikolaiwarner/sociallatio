@@ -1,17 +1,18 @@
 %h1
-  = h content_for(:title, "your friends")
+  = title("your friends")
 
-.nav(data-role="navbar")
-  %ul
-    %li
-      = link_to "new friend", new_friend_path, {"data-role" => "button"}
-    %li
-      = link_to "best friends", best_friends_path, {"data-role" => "button"} 
-    %li
-      = link_to "learn your friends", learn_friends_path, {"data-role" => "button"}
-
-= render 'friends/name_list', :friends => @friends     
-
-%br/
-= paginate @friends
-      
+.friend_page
+  .nav(data-role="navbar")
+    %ul
+      %li
+        = link_to "new friend", new_friend_path, {"data-role" => "button"}
+      %li
+        = link_to "best friends", best_friends_path, {"data-role" => "button"} 
+      %li
+        = link_to "learn your friends", learn_friends_path, {"data-role" => "button"}
+  
+  = render 'friends/name_list', :friends => @friends     
+  
+  %br/
+  = paginate @friends
+        

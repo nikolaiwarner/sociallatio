@@ -28,6 +28,8 @@ class InteractionsController < ApplicationController
   def new
     @interaction = Interaction.new
 
+    @friend_name = params[:friend] || ""
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @interaction }
@@ -37,6 +39,7 @@ class InteractionsController < ApplicationController
 
   def edit
     @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
+    @friend_name = @interaction.friend.name
   end
 
 

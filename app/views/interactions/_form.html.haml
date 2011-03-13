@@ -10,8 +10,8 @@
           
           
   .field
-    = f.label :friend_id, "the friend(s): " 
-    = text_field_tag :interaction_friend_name, "#{@interaction.friend.name if @interaction.friend}", { :class => "friendname_autocomplete" }
+    = f.label :friend_id, "who: " 
+    = text_field_tag :interaction_friend_name, "#{@friend_name}", { :class => "friendname_autocomplete" }
     
   .field
     = f.label :datetime, "when: "
@@ -19,7 +19,7 @@
     = date_select(:interaction, :datetime, :default => Date.today)
     
   .field
-    = f.label :interaction_type_id, "type: "
+    = f.label :interaction_type_id, "what: "
     = f.select :interaction_type_id, InteractionType.where(:user_id => current_user.id).all.collect {|p| [ p.name, p.id ] }
     
   
@@ -30,6 +30,7 @@
   
   .field
     = f.label :points, 'bonus points:'
-    = f.text_field :points, :value => '0'
+    /= f.text_field :points, :value => '0'
+    = f.select :points, options_for_select([0,1,2,3,4,5], @interaction.points)
   .actions
     = f.submit :value => 'save'

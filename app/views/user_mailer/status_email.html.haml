@@ -3,10 +3,29 @@
   %head
     %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")
   %body
-    %h1
-      Today you might consider hanging out with:
+  
+    - todays_friends = raw(@user.friends.collect { |friend|  link_to(friend.name, friend_url(friend)) if friend.needs_an_interaction?(@user) }.compact.join(', '))
+    - unless todays_friends.blank?
+      %h1
+        Today you might consider hanging out with:
+      %p
+        = todays_friends
+    
+    - soon_friends = raw(@user.friends.collect { |friend|  link_to(friend.name, friend_url(friend)) if friend.needs_an_interaction?(@user, Time.now + 4.days) }.compact.join(', '))
+    - unless soon_friends.blank?
+      %h2
+        These would be great people to contact soon:
+      %p
+        = soon_friends
+      
+    %h2
+      Get to know your friends! Who is this?
     %p
-      = raw(@user.friends.collect { |friend|  link_to(friend.name, friend_url(friend)) if friend.needs_an_interaction?(@user) }.compact.join(', '))
+      - random_friend = Friend.random @user
+      = random_friend.portrait? ? link_to(image_tag(random_friend.portrait_url), friend_url(random_friend))  : link_to("Add a portrait for #{random_friend.name}", friend_url(random_friend))
+      %br/
+      = link_to "Learn your friends", learn_friends_url
+      
     %p
       Your friends miss you!
       %br/
