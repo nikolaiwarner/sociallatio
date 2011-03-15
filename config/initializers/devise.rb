@@ -101,7 +101,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
-  # config.token_authentication_key = :auth_token
+  config.token_authentication_key = :auth_token
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
@@ -124,7 +124,7 @@ Devise.setup do |config|
   # access, but formats like :xml or :json, should return 401.
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists. Default is [:html]
-  # config.navigational_formats = [:html, :iphone]
+  config.navigational_formats = [:html, :mobile]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,

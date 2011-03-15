@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :authentication_token
   
   has_many :friends
   has_many :interactions
@@ -14,8 +14,13 @@ class User < ActiveRecord::Base
   
   ROLES = %w[admin friend banned]
   
+  
   before_create :set_default_role
+  before_create :ensure_authentication_token
+
   after_create :setup_default_data
+  
+  
   
   def set_default_role
     self.role = "friend"
@@ -46,6 +51,10 @@ class User < ActiveRecord::Base
   
   def to_param
     username
+  end
+  
+  def ensure_authentication_token
+    reset_authentication_token! if authentication_token.blank?
   end
   
 end
