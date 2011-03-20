@@ -27,7 +27,7 @@
 
     = csrf_meta_tag
   %body
-    .wrapper(data-role="page")
+    .wrapper(data-role="page" data-theme="c")
       .header(data-role="header" data-position="fixed")
         %h1
           = yield :title
@@ -50,5 +50,6 @@
                 = link_to("interact", interactions_path, {"data-icon" => "check"}) 
               %li
                 = link_to("settings", page_path('settings'), {"data-icon" => "gear"}) 
-        - else(data-icon="plus")
-          = link_to("sign in", new_user_session_path)
+        - else
+          %div(data-icon="plus")
+            = link_to("sign in", new_user_session_path)
