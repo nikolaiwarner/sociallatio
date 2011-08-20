@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  config.mailer_sender = "friends@sociallatio.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -46,7 +46,7 @@ Devise.setup do |config|
   config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "65d5abace06f2f97f752524a4728d89922c74ef744ab67f5f5cdb6ab219dab51c969c88ffd1a35cb1a9d9d6618188669c91b9fb0fad10a2c43509915e181b2af"
+  config.pepper = "65d5abace06f2f97f752524a4728d89922c74ef744ab67f5f5cdb6ab219dab51c969a88ffd1a35cb1a9d9d6618188669c91b9fb0fad10a2c43509915e181b2af"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time

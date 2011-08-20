@@ -1,0 +1,166 @@
+<h1><%= title("Import") %></h1>
+    
+    
+    
+<style>
+
+  #potentialfriendlist {
+    clear: both;
+  }
+
+  .potentialfriend {
+    float: left;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    width: 100px;
+    height: 130px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 12px;
+    overflow: hidden;
+  }
+    
+  .potentialfriend.selected {
+    background-color: #db7093;
+    color: #fff;
+  }
+  
+  .potentialfriend:hover {
+    -webkit-transform: scale(1.2);
+    box-shadow: 0px 0px 5px #000;
+  }
+    
+    .potentialfriend img {
+      height: 100px;
+      padding-bottom: 3px;
+    }
+    
+  
+  
+</style>
+    
+    
+    
+
+<div>
+  <button id="login">Login</button>
+  <button id="logout">Logout</button>
+  <button id="disconnect">Disconnect</button>
+</div>
+<div id="user-info" style="display: none;"></div>
+
+
+<div id="potentialfriendlist"></div>
+
+<div onclick='saveSelectedPotentialFriends()'>Import The Selected Friends</div>
+
+
+
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+
+
+  var potentialfriends = [];
+
+
+  // initialize the library with the API key
+  FB.init({ apiKey: '266664523344909' });
+
+  // fetch the status on load
+  FB.getLoginStatus(handleSessionResponse);
+
+  $('#login').bind('click', function() {
+    FB.login(handleSessionResponse);
+  });
+
+  $('#logout').bind('click', function() {
+    FB.logout(handleSessionResponse);
+  });
+
+  $('#disconnect').bind('click', function() {
+    FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+      clearDisplay();
+    });
+  });
+  
+  
+  $('.potentialfriend').live('click', function() {
+    $(this).toggleClass('selected');
+  });
+  
+
+
+  // handle a session response from any of the auth related calls
+  function handleSessionResponse(response) {
+    // if we dont have a session, just hide the user info
+    if (!response.session) {
+      $('#user-info').hide('fast');
+      return;
+    }
+
+    FB.api('/me',
+      function(response) {
+        $('#user-info').html(response.name+  "'s Facebook Friends").show('fast');
+      }
+    );
+    
+    
+    FB.api('/me/friends', function(response) {
+    
+      for( i=0; i < response.data.length; i++) {
+        var friend = {};
+        friend.id = response.data[i].id;
+        friend.name = response.data[i].name;
+        friend.photo = {
+          small: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=small',
+          square: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=square',
+          large: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=large'
+        };
+        
+        potentialfriends.push(friend); 
+      }
+      
+      showPotientialFriends(); 
+    });
+    
+  }
+  
+  
+
+  
+  function showPotientialFriends() {
+    $('#potentialfriendlist').empty();
+    
+    $(potentialfriends).each(function(index, friend){
+      $('#potentialfriendlist').append('<div data-friendindex="'+index+'" class="potentialfriend"><img src="' + friend.photo.square + '" />' + friend.name + "</div>");
+    });
+  }
+  
+  
+  function saveSelectedPotentialFriends() {
+    var selectedFriends = [];
+    $('.potentialfriend.selected').each(function(index, frienddiv){
+      var friendindex = parseInt($(frienddiv).data('friendindex'), 10);
+      
+      if (friendindex) {
+        selectedFriends.push(potentialfriends[friendindex]);
+      }
+    });
+    
+    
+    // upload selectedFriends…..
+    console.log(selectedFriends);
+    
+    
+  }
+  
+  
+  
+</script>
+    
+    
+    
+    
