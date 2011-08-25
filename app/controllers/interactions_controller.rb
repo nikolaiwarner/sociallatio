@@ -65,6 +65,8 @@ class InteractionsController < ApplicationController
         interaction.points ||= 0
       
         interaction.save
+        
+        friend.balance_points
       end
     end
    

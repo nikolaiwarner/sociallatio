@@ -20,6 +20,11 @@ class FriendsController < ApplicationController
     respond_with(@friends)
   end
   
+  def best_alltime
+    @friends = Friend.where(:user_id => current_user.id).order('score_alltime DESC')
+    respond_with(@friends)
+  end
+  
   def learn
     @friend = Friend.random current_user
     respond_with(@friend)

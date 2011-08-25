@@ -21,6 +21,19 @@ class Friend < ActiveRecord::Base
     seconds_since_interaction(interaction, datetime) / 86400
   end
   
+  def official_score_alltime
+    thescore = 0
+    interactions.each do |interaction|
+      thescore = thescore + interaction.points + interaction.interaction_type.points
+    end
+    thescore
+  end
+  
+  def balance_points
+    score_alltime = official_score_alltime
+    save
+  end
+  
   def to_param
     self.slug
   end
