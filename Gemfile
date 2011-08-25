@@ -1,7 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+
+gem 'rails', '3.0.10'
+
 gem 'haml'
+gem 'sass'
 gem 'devise'
 gem 'cancan'
 gem 'rmagick'
@@ -11,6 +14,8 @@ gem 'high_voltage'
 gem 'squeel'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'kaminari'
+
+#gem 'pg'
 
 gem 'sqlite3'
 
