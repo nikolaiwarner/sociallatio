@@ -11,11 +11,10 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'fog'
 gem 'high_voltage'
-gem 'squeel'
+#gem 'squeel'
+gem 'meta_where'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'kaminari'
-
-#gem 'pg'
 
 gem 'sqlite3'
 
