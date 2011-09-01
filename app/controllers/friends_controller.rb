@@ -5,7 +5,8 @@ class FriendsController < ApplicationController
   respond_to :html, :json
 
   def autocomplete
-    @friends = (params[:term] == "") ? [] : Friend.limit(10).where(:user_id => current_user.id, :name.matches => '%'+params[:term]+'%')
+    @friends = (params[:term] == "") ? [] : Friend.limit(10).where{ (user_id == my{current_user.id}) & (name =~ '%'+my{params[:term]}+'%') }
+    
     respond_with(@friends.collect{ |friend| friend.name })
   end
 

@@ -16,6 +16,11 @@ Sociallatio::Application.routes.draw do
     end
   end
   
+  # Importing
+  match 'import/facebook' => 'high_voltage/pages#show', :id => 'import_facebook'
+  match 'import/google' => 'high_voltage/pages#show', :id => 'import_google'
+
+  
   root :to => 'high_voltage/pages#show', :id => 'home'
   
   
