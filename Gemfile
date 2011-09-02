@@ -20,3 +20,7 @@ gem 'sqlite3'
 group :development, :test do
   gem "rspec-rails", ">= 2.4.1"
 end
+
+group :production, :staging do
+  gem "pg"
+end
