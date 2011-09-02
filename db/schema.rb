@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215061030) do
+ActiveRecord::Schema.define(:version => 20110825191538) do
 
   create_table "frequencies", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20110215061030) do
     t.integer  "score"
     t.text     "notes"
     t.string   "portrait"
+    t.integer  "score_alltime"
   end
 
   create_table "interaction_types", :force => true do |t|

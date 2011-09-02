@@ -42,6 +42,7 @@
       - if current_user
         = link_to("friends", friends_path)
         = link_to("interactions", interactions_path) 
+        = link_to "learn your friends", learn_friends_path
         = link_to("settings", page_path('settings')) 
         = link_to("sign out", destroy_user_session_path)
       - else

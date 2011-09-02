@@ -12,7 +12,7 @@
     = f.text_field :name
   .field
     = f.label :frequency_id, "frequency to interact: "
-    = select :friend, :frequency_id, Frequency.all.collect {|p| [ p.name, p.id ] }
+    = select :friend, :frequency_id, Frequency.where(:user_id => current_user.id).all.collect {|p| [ p.name, p.id ] }
     
   .field
     = f.label :portrait, "your friend's portrait:"

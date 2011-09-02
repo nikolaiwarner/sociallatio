@@ -5,11 +5,12 @@
   .nav(data-role="navbar")
     %ul
       %li
-        = link_to "new friend", new_friend_path, {"data-role" => "button"}
+        = link_to "new friend", new_friend_path
       %li
-        = link_to "best friends", best_friends_path, {"data-role" => "button"} 
+        = link_to "best friends currently", best_friends_path
       %li
-        = link_to "learn your friends", learn_friends_path, {"data-role" => "button"}
+        = link_to "best friends ever", best_alltime_friends_path 
+        
   
   = render 'friends/name_list', :friends => @friends     
   
