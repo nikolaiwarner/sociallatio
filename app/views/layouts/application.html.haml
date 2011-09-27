@@ -5,17 +5,18 @@
       Sociallatio
       = " | " + content_for(:title) if content_for?(:title)
     
-    %link{ :rel => "shortcut icon", :href => '/images/favicon.png' }
-    %link{ :rel => "apple-touch-icon", :href => '/images/favicon.png' }
+    %link{ :rel => "shortcut icon", :href => '/assets/images/favicon.png' }
+    %link{ :rel => "apple-touch-icon", :href => '/assets/images/favicon.png' }
     
     = stylesheet_link_tag 'application'
-    %link{ :media => "screen", :rel => "stylesheet", :type => "text/css", :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css" }
+
+
+    = javascript_include_tag "application"
+    = csrf_meta_tag
     
     %script{ :type => "text/javascript", :src => "https://www.google.com/jsapi?key=ABQIAAAALFcVECtS_cckPZPP6gEvtBQNqA7PXSQWBnZcv0WRsLc5vt2EwhRNL4XDqi3F3gVWu6gud-eJy35NIA" }
     :javascript
       google.load("chrome-frame", "1.0.2");
-      google.load("jquery", "1.6.2");
-      google.load("jqueryui", "1.8.16");
       google.load("webfont", "1.0.22");
       google.setOnLoadCallback(function() {
         WebFont.load({
@@ -24,8 +25,6 @@
           }});
       });
 
-    = javascript_include_tag "application"
-    = csrf_meta_tag
   %body
     .wrapper
       .header

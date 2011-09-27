@@ -5,17 +5,23 @@
   <button id="login">Login</button>
 </div>
 <div class='buttons loggedin'>
-  <button onclick='saveSelectedPotentialFriends()'>Import The Selected Friends</button>
-  <button id="logout">Logout</button>
+  <button onclick='saveSelectedPotentialFriends()'>Import The Selected Friends Name & Photo</button>
+  <button id="logout">Logout from Facebook</button>
 </div>
+
+<div style="clear:both"></div>
+
+<div id="loading" style="display: none;">Importing...</div>
+<div id="import_success_list" style="display: none;">Successfully imported: </div>
+  
 
 <br/>
 
 <h2 class='title' style="display: none;"></h2>
 
 
-<div id="potentialfriendlist"></div>
 
+<div id="potentialfriendlist"></div>
 <div style="clear:both"></div>
 
 
@@ -91,6 +97,7 @@
         friend.photo = {
           small: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=small',
           square: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=square',
+          normal: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=normal',
           large: 'http://graph.facebook.com/' + response.data[i].id + '/picture?type=large'
         };
         
@@ -109,10 +116,12 @@
     $('#potentialfriendlist').empty();
     
     $(potentialfriends).each(function(index, friend){
-      $('#potentialfriendlist').append('<div data-friendindex="'+index+'" class="potentialfriend"><img src="' + friend.photo.square + '" />' + friend.name + "</div>");
+      $('#potentialfriendlist').append('<div data-friendindex="'+index+'" class="potentialfriend"><img src="' + friend.photo.normal + '" />' + friend.name + "</div>");
     });
   }
   
+  
+  window.loadingCount = 0;
   
   function saveSelectedPotentialFriends() {
     var selectedFriends = [];
@@ -122,13 +131,42 @@
       if (friendindex) {
         selectedFriends.push(potentialfriends[friendindex]);
       }
+      
+      $(frienddiv).removeClass('selected');
     });
     
+    loadingCount = selectedFriends.length;
+    $('.loggedin').hide();
+    $('#loading').show();
     
-    // upload selectedFriends…..
-    console.log(selectedFriends);
+    $.each(selectedFriends, function(index, friend){
     
-    alert('coming soon…');
+      $.post('/friends', 
+        { 
+          'friend[name]': friend.name,
+          'friend[remote_portrait_url]': friend.photo.large
+        }, 
+        function(data) {
+          if (data.errors) {
+            var error_string = '';
+            if (data.errors.name) {
+              error_string = friend.name + ': Name ' + data.errors.name[0];
+            }
+          } else {
+            $('#import_success_list').hide().html($('#import_success_list').html() + " <a href='/friends/"+data.slug+"'>" + friend.name + "</a>").fadeIn();
+          }
+          
+          loadingCount = loadingCount - 1;
+          if (loadingCount == 0) {          
+            $('.loggedin').show();
+            $('#loading').hide();
+          }
+        },
+        'json'
+      );
+  
+    });
+
   }
   
   

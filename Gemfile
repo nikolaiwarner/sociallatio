@@ -7,13 +7,20 @@ gem 'haml'
 gem 'sass'
 gem 'devise'
 gem 'cancan'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog'
 gem 'high_voltage'
 gem 'squeel'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'kaminari'
+
+gem 'activeadmin'
+gem "meta_search",  '>= 1.1.0.pre'
+
+gem 'sass-rails'
+gem 'coffee-rails', "~> 3.1.0"
+gem 'uglifier'
 
 gem 'sqlite3'
 
@@ -23,12 +30,4 @@ end
 
 group :production, :staging do
   gem "pg"
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
 end

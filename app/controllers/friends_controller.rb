@@ -54,14 +54,16 @@ class FriendsController < ApplicationController
     @friend = Friend.new(params[:friend])
     @friend.user = current_user
     @friend.score = 0
-
+    @friend.score_alltime = 0
+    @friend.frequency = Frequency.where(:user_id => current_user.id).last unless @friend.frequency
+    
     respond_to do |format|
       if @friend.save
         format.html { redirect_to(@friend, :notice => 'Friend was successfully created.') }
-        format.xml  { render :xml => @friend, :status => :created, :location => @friend }
+        format.json { render :json => {'slug' => @friend.slug}.to_json }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @friend.errors, :status => :unprocessable_entity }
+        format.json { render :json => {'errors' => @friend.errors}.to_json }
       end
     end
   end
@@ -69,8 +71,6 @@ class FriendsController < ApplicationController
 
   def update
     @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
-
-
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])
