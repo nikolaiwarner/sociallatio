@@ -21,10 +21,12 @@
     %h2
       Get to know your friends! Who is this?
     %p
-      - random_friend = Friend.where(:user_id => @user.id).random @user
-      = random_friend.portrait? ? link_to(image_tag(random_friend.portrait_url), friend_url(random_friend))  : link_to("Add a portrait for #{random_friend.name}", friend_url(random_friend))
-      %br/
-      = link_to "Learn your friends", learn_friends_url
+      - if random_friend = Friend.random @user
+        = random_friend.portrait? ? link_to(image_tag(random_friend.portrait_url), friend_url(random_friend))  : link_to("Add a portrait for #{random_friend.name}", friend_url(random_friend))
+        %br/
+        = link_to "Learn your friends", learn_friends_url
+      - else
+         = link_to "Hmmm. No friends. Add your friends!", new_friend_url 
       
     %p
       Your friends miss you!
