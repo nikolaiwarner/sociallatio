@@ -5,8 +5,10 @@
 // the compiled file.
 //
 
+
+//= require active_admin 
+
 //= require jquery.min.js
 //= require jquery_ujs
 //= require jquery-ui.min.js
-//= require active_admin
 //= require sociallatio

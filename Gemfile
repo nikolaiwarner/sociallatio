@@ -13,7 +13,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'high_voltage'
 gem 'squeel'
-gem 'jquery-rails', '>= 0.2.6'
+gem 'jquery-rails'
 gem 'kaminari'
 
 gem 'activeadmin'
