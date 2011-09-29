@@ -1,9 +1,7 @@
-desc "This task is called by the Heroku cron add-on"
+desc "The daily maintenance updates! This task is called by the Heroku cron add-on"
 task :cron => :environment do
   #if Time.now.hour == 0 # run at midnight
 
-
-   
     User.all.each do |user|
     
       # balance points
@@ -12,11 +10,16 @@ task :cron => :environment do
           friend.score = friend.score - 1
           friend.save
         end
+        
+        # Recalculate Points
+        friend.balance_points
+        
       end
       
       # email daily status update
-      UserMailer.status_email(user).deliver
-      
+      if user.send_daily_email
+        UserMailer.status_email(user).deliver
+      end    
     end
     
     

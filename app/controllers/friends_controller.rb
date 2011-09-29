@@ -27,7 +27,7 @@ class FriendsController < ApplicationController
   end
   
   def learn
-    @friend = Friend.random current_user
+    @friend = Friend.where(:user_id => current_user.id).random current_user
     respond_with(@friend)
   end
 
