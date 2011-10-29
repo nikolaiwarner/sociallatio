@@ -4,7 +4,7 @@ class InteractionTypesController < ApplicationController
   # GET /interaction_types
   # GET /interaction_types.xml
   def index
-    @interaction_types = InteractionType.where(:user_id => current_user.id).order('points ASC')
+    @interaction_types = current_user.interaction_types.order('points ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class InteractionTypesController < ApplicationController
   # GET /interaction_types/1
   # GET /interaction_types/1.xml
   def show
-    @interaction_type = InteractionType.where(:user_id => current_user.id).find(params[:id])
+    @interaction_type = current_user.interaction_types.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class InteractionTypesController < ApplicationController
   # GET /interaction_types/new
   # GET /interaction_types/new.xml
   def new
-    @interaction_type = InteractionType.new
+    @interaction_type = current_user.interaction_types.new
  
     respond_to do |format|
       format.html # new.html.erb
@@ -36,15 +36,13 @@ class InteractionTypesController < ApplicationController
 
   # GET /interaction_types/1/edit
   def edit
-    @interaction_type = InteractionType.where(:user_id => current_user.id).find(params[:id])
+    @interaction_type = current_user.interaction_types.find(params[:id])
   end
 
   # POST /interaction_types
   # POST /interaction_types.xml
   def create
-    @interaction_type = InteractionType.new(params[:interaction_type])
-   
-    @interaction_type.user = current_user
+    @interaction_type = current_user.interaction_types.new(params[:interaction_type])
 
     respond_to do |format|
       if @interaction_type.save
@@ -60,7 +58,7 @@ class InteractionTypesController < ApplicationController
   # PUT /interaction_types/1
   # PUT /interaction_types/1.xml
   def update
-    @interaction_type = InteractionType.where(:user_id => current_user.id).find(params[:id])
+    @interaction_type = current_user.interaction_types.find(params[:id])
 
     respond_to do |format|
       if @interaction_type.update_attributes(params[:interaction_type])
@@ -76,7 +74,7 @@ class InteractionTypesController < ApplicationController
   # DELETE /interaction_types/1
   # DELETE /interaction_types/1.xml
   def destroy
-    @interaction_type = InteractionType.where(:user_id => current_user.id).find(params[:id])
+    @interaction_type = current_user.interaction_types.find(params[:id])
     @interaction_type.destroy
 
     respond_to do |format|

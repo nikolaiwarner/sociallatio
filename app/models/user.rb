@@ -29,22 +29,22 @@ class User < ActiveRecord::Base
   def setup_default_data
     # Interaction Types
     ["Phone Call", "IM/Text", "Email", "Tweet"].each do |type|
-      InteractionType.create!(:name => type, :user_id => self.id, :points => 1)
+      interaction_types.create!(:name => type, :points => 1)
     end
-    InteractionType.create!(:name => "Meeting", :user_id => self.id, :points => 2)
-    InteractionType.create!(:name => "Lunch", :user_id => self.id, :points => 2)
-    InteractionType.create!(:name => "Dinner", :user_id => self.id, :points => 3)
-    InteractionType.create!(:name => "Hang Out", :user_id => self.id, :points => 5)
- 
+    
+    interaction_types.create!(:name => "Meeting", :points => 2)
+    interaction_types.create!(:name => "Lunch", :points => 2)
+    interaction_types.create!(:name => "Dinner", :points => 3)
+    interaction_types.create!(:name => "Hang Out", :points => 5)
     
     # Frequencies
-    Frequency.create!(:user_id => self.id, :name => "Daily", :number_of_days => 1)
-    Frequency.create!(:user_id => self.id, :name => "Weekly", :number_of_days => 7)
-    Frequency.create!(:user_id => self.id, :name => "Bi-Weekly", :number_of_days => 14)
-    Frequency.create!(:user_id => self.id, :name => "Monthly", :number_of_days => 30)
-    Frequency.create!(:user_id => self.id, :name => "Bi-Monthly", :number_of_days => 60)
-    Frequency.create!(:user_id => self.id, :name => "Quarterly", :number_of_days => 90)
-    Frequency.create!(:user_id => self.id, :name => "Yearly", :number_of_days => 365)  
+    frequencies.create!(:name => "Daily", :number_of_days => 1)
+    frequencies.create!(:name => "Weekly", :number_of_days => 7)
+    frequencies.create!(:name => "Every Other Week", :number_of_days => 14)
+    frequencies.create!(:name => "Monthly", :number_of_days => 30)
+    frequencies.create!(:name => "Every Other Month", :number_of_days => 60)
+    frequencies.create!(:name => "Quarterly", :number_of_days => 90)
+    frequencies.create!(:name => "Yearly", :number_of_days => 365)  
   end
   
   

@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 
 gem 'thin'
 gem 'haml'
@@ -19,11 +18,10 @@ gem 'kaminari'
 gem 'activeadmin'
 gem "meta_search",  '>= 1.1.0.pre'
 
-gem 'sass-rails', "  ~> 3.1.0"
-
 group :assets do
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'sqlite3'

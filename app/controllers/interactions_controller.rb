@@ -4,7 +4,7 @@ class InteractionsController < ApplicationController
 
 
   def index
-    @interactions = Interaction.where(:user_id => current_user.id).order('datetime DESC').page(params[:page])
+    @interactions = current_user.interactions.order('datetime DESC').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class InteractionsController < ApplicationController
 
 
   def show
-    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
+    @interaction = current_user.interactions.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class InteractionsController < ApplicationController
 
 
   def new
-    @interaction = Interaction.new
+    @interaction = current_user.interactions.new
 
     @friend_name = params[:friend] || ""
 
@@ -38,15 +38,17 @@ class InteractionsController < ApplicationController
 
 
   def edit
-    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
+    @interaction = current_user.interactions.find(params[:id])
     @friend_name = @interaction.friend.name
   end
 
 
 
   def create
-   
-    # muliple friends
+    missing_friends = []
+    missing_friends_notice_string = ""
+  
+    # deal with all those wonderful, muliple friends that you seem to have at a single event
     friend_names = []
     if params[:interaction_friend_name].include? ','
       friend_names = params[:interaction_friend_name].split(',').collect{|friend| friend.strip }
@@ -54,29 +56,35 @@ class InteractionsController < ApplicationController
       friend_names = [params[:interaction_friend_name].gsub(',','').strip]
     end
    
+   
     friend_names.each do |friend_name|
-      interaction = Interaction.new(params[:interaction])
-      interaction.user = current_user
+      interaction = current_user.interactions.new(params[:interaction])
     
-      friend = Friend.find_by_name friend_name
+      friend = current_user.friends.find_by_name friend_name
       if friend
-        interaction.friend_id = friend.id 
+        interaction.friend = friend
     
         interaction.points ||= 0
       
         interaction.save
         
-        friend.balance_points
+        friend.balance_points!    
+      else
+        missing_friends.push friend_name
       end
     end
-   
+  
+    if missing_friends.count > 0
+      missing_friends_notice_string = " However, these friend names were not found: " + missing_friends.join(",")
+    end      
+
     redirect_to(interactions_path, :notice => 'Interaction noted.')
   end
 
 
 
   def update
-    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
+    @interaction = current_user.interactions.find(params[:id])
 
     respond_to do |format|
       if @interaction.update_attributes(params[:interaction])
@@ -92,7 +100,7 @@ class InteractionsController < ApplicationController
 
 
   def destroy
-    @interaction = Interaction.where(:user_id => current_user.id).find(params[:id])
+    @interaction = current_user.interactions.find(params[:id])
     @interaction.destroy
 
     respond_to do |format|

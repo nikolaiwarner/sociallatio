@@ -5,57 +5,56 @@ class FriendsController < ApplicationController
   respond_to :html, :json
 
   def autocomplete
-    @friends = (params[:term] == "") ? [] : Friend.limit(10).where{ (user_id == my{current_user.id}) & (name =~ '%'+my{params[:term]}+'%') }
+    @friends = (params[:term] == "") ? [] : current_user.friends.where{ (name =~ '%'+my{params[:term]}+'%') }.limit(10)
     
     respond_with(@friends.collect{ |friend| friend.name })
   end
 
 
   def index
-    @friends = Friend.where(:user_id => current_user.id).order('name ASC').page(params[:page]).per(100)
+    @friends = current_user.friends.order('name ASC').page(params[:page]).per(100)
     respond_with(@friends)
   end
   
   def best
-    @friends = Friend.where(:user_id => current_user.id).order('score DESC')
+    @friends = current_user.friends.order('score DESC')
     respond_with(@friends)
   end
   
   def best_alltime
-    @friends = Friend.where(:user_id => current_user.id).order('score_alltime DESC')
+    @friends = current_user.friends.order('score_alltime DESC')
     respond_with(@friends)
   end
   
   def learn
-    @friend = Friend.where(:user_id => current_user.id).random current_user
+    @friend = current_user.friends.random current_user
     respond_with(@friend)
   end
 
   def show
-    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id])
     @interactions = @friend.interactions.order('datetime DESC').page(params[:page]).per(10)
     respond_with(@friend)
   end
 
 
   def new
-    @friend = Friend.new
+    @friend = current_user.friends.new
     @friend.name = ""
     respond_with(@friend)
   end
 
 
   def edit
-    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id])
   end
 
 
   def create
-    @friend = Friend.new(params[:friend])
-    @friend.user = current_user
+    @friend = current_user.friends.new(params[:friend])
     @friend.score = 0
     @friend.score_alltime = 0
-    @friend.frequency = Frequency.where(:user_id => current_user.id).last unless @friend.frequency
+    @friend.frequency = current_user.frequencies.last unless @friend.frequency
     
     respond_to do |format|
       if @friend.save
@@ -70,7 +69,7 @@ class FriendsController < ApplicationController
 
 
   def update
-    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id])
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])
@@ -85,7 +84,7 @@ class FriendsController < ApplicationController
 
 
   def destroy
-    @friend = Friend.where(:user_id => current_user.id).find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id])
     @friend.destroy
 
     respond_to do |format|
@@ -97,7 +96,7 @@ class FriendsController < ApplicationController
 
 protected
   def load_friend
-    @friend = Friend.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id])
   end
   
   

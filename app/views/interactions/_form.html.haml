@@ -20,7 +20,7 @@
     
   .field
     = f.label :interaction_type_id, "what: "
-    = f.select :interaction_type_id, InteractionType.where(:user_id => current_user.id).all.collect {|p| [ p.name, p.id ] }
+    = f.select :interaction_type_id, current_user.interaction_types.all.collect {|p| [ p.name, p.id ] }
     
   
   .field

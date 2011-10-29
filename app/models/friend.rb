@@ -29,9 +29,9 @@ class Friend < ActiveRecord::Base
     thescore
   end
   
-  def balance_points
-    score_alltime = official_score_alltime
-    save
+  def balance_points!
+    self.score_alltime = official_score_alltime
+    self.save!
   end
   
   def to_param
@@ -47,8 +47,8 @@ class Friend < ActiveRecord::Base
   end
   
   def self.random for_user
-    offset = rand(Friend.where(:user_id => for_user.id).count)
-    Friend.first(:offset => offset)
+    offset = rand(for_user.friends.count)
+    for_user.friends.first(:offset => offset)
   end
   
 end

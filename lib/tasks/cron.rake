@@ -12,7 +12,7 @@ task :cron => :environment do
         end
         
         # Recalculate Points
-        friend.balance_points
+        friend.balance_points!
         
       end
       
