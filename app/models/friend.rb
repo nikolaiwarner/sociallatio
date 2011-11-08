@@ -42,8 +42,8 @@ class Friend < ActiveRecord::Base
     name.gsub(' ', '_')
   end
   
-  def self.find_by_slug name_slug
-    Friend.find_by_name(name_slug.gsub('_', ' '))
+  def self.find_by_slug name_slug, user
+    user.friends.find_by_name(name_slug.gsub('_', ' '))
   end
   
   def self.random for_user

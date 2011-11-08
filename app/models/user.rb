@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   end
   
   
-  def to_param
-    username
-  end
+#   def to_param
+#     username
+#   end
   
     
 end

@@ -32,7 +32,7 @@ class FriendsController < ApplicationController
   end
 
   def show
-    @friend = current_user.friends.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id], current_user)
     @interactions = @friend.interactions.order('datetime DESC').page(params[:page]).per(10)
     respond_with(@friend)
   end
@@ -46,7 +46,7 @@ class FriendsController < ApplicationController
 
 
   def edit
-    @friend = current_user.friends.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id], current_user)
   end
 
 
@@ -69,7 +69,7 @@ class FriendsController < ApplicationController
 
 
   def update
-    @friend = current_user.friends.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id], current_user)
 
     respond_to do |format|
       if @friend.update_attributes(params[:friend])
@@ -84,7 +84,7 @@ class FriendsController < ApplicationController
 
 
   def destroy
-    @friend = current_user.friends.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id], current_user)
     @friend.destroy
 
     respond_to do |format|
@@ -96,7 +96,7 @@ class FriendsController < ApplicationController
 
 protected
   def load_friend
-    @friend = current_user.friends.find_by_slug(params[:id])
+    @friend = current_user.friends.find_by_slug(params[:id], current_user)
   end
   
   
