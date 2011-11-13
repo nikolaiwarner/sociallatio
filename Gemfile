@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 
 gem 'heroku'
+gem 'backup'
 
 gem 'thin'
 gem 'haml'
@@ -19,7 +20,6 @@ gem 'kaminari'
 
 gem 'activeadmin'
 gem "meta_search",  '>= 1.1.0.pre'
-
 
 gem 'sass-rails',   '~> 3.1.4'
 
