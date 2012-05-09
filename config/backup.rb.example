@@ -1,0 +1,105 @@
+##
+# Backup
+# Generated Template
+#
+# For more information:
+#
+# View the Git repository at https://github.com/meskyanichi/backup
+# View the Wiki/Documentation at https://github.com/meskyanichi/backup/wiki
+# View the issue log at https://github.com/meskyanichi/backup/issues
+#
+# When you're finished configuring this configuration file,
+# you can run it from the command line by issuing the following command:
+#
+# $ backup perform -t my_backup [-c <path_to_configuration_file>]
+
+
+require './lib/heroku_pgbackups.rb'
+
+
+Backup::Model.new(:heroku, 'Heroku hosted data') do
+
+
+  database Backup::Database::HerokuPgbackups do |db|
+    db.name = 'my-heroku-app-name'
+  end
+
+  ##
+  # Amazon Simple Storage Service [Storage]
+  #
+  # Available Regions:
+  #
+  #  - ap-northeast-1
+  #  - ap-southeast-1
+  #  - eu-west-1
+  #  - us-east-1
+  #  - us-west-1
+  #
+  store_with S3 do |s3|
+    s3.access_key_id      = 'my_access_key_id'
+    s3.secret_access_key  = 'my_secret_access_key'
+    s3.region             = 'us-east-1'
+    s3.bucket             = 'bucket-name'
+    s3.path               = '/path/to/my/backups'
+    s3.keep               = 10
+  end
+  
+  
+
+  ##
+  # Amazon Simple Storage Service [Syncer]
+  #
+  sync_with S3 do |s3|
+    s3.access_key_id     = "my_access_key_id"
+    s3.secret_access_key = "my_secret_access_key"
+    s3.bucket            = "my-bucket"
+    s3.path              = "/backups"
+    s3.mirror            = true
+
+    s3.directories do |directory|
+      directory.add "/path/to/directory/to/sync"
+      directory.add "/path/to/other/directory/to/sync"
+    end
+  end
+
+  ##
+  # GPG [Encryptor]
+  #
+  encrypt_with GPG do |encryption|
+    encryption.key = <<-KEY
+      -----BEGIN PGP PUBLIC KEY BLOCK-----
+      Version: GnuPG v1.4.11 (Darwin)
+
+          <Your GPG Public Key Here>
+      -----END PGP PUBLIC KEY BLOCK-----
+    KEY
+  end
+
+  ##
+  # Gzip [Compressor]
+  #
+  compress_with Gzip do |compression|
+    compression.best = true
+    compression.fast = false
+  end
+
+  ##
+  # Mail [Notifier]
+  #
+  notify_by Mail do |mail|
+    mail.on_success           = true
+    mail.on_failure           = true
+
+    mail.from                 = 'sender@email.com'
+    mail.to                   = 'receiver@email.com'
+    mail.address              = 'smtp.gmail.com'
+    mail.port                 = 587
+    mail.domain               = 'your.host.name'
+    mail.user_name            = 'sender@email.com'
+    mail.password             = 'my_password'
+    mail.authentication       = 'plain'
+    mail.enable_starttls_auto = true
+  end
+
+end
+

@@ -23,5 +23,12 @@ task :cron => :environment do
     end
     
     
+    
+    
+    # Run application backup
+    sh "backup perform --trigger heroku --config_file config/backup.rb"
+  
+    
+    
   #end
 end
