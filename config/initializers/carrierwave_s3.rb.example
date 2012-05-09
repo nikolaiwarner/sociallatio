@@ -1,5 +1,9 @@
 CarrierWave.configure do |config|
-  config.s3_access_key_id = 'XXXX'
-  config.s3_secret_access_key = 'XXXX'
-  config.s3_bucket = 'XXXX'
+  config.fog_credentials = {
+    :provider               => 'XXXX',       # required
+    :aws_access_key_id      => 'XXXX',       # required
+    :aws_secret_access_key  => 'XXXX',       # required
+    :region                 => 'us-east-1'   # optional, defaults to 'us-east-1'
+  }
+  config.fog_directory  = 'XXXX'  # required
 end
